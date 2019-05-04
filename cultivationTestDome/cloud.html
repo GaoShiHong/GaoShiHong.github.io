@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cloud">
+        <img src="./img/cloud_one.png" alt="" srcset="">
+        <img src="./img/cloud_two.png" alt="" srcset="">
+        <img src="./img/cloud_three.png" alt="" srcset="">
+    </div>
+    <style>
+        .cloud {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            background: #007fd5;
+            overflow: hidden;
+        }
+
+        .cloud img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+           
+        }
+        .cloud img:nth-child(1){
+            animation: cloudone 5s infinite;
+        }
+        .cloud img:nth-child(2){
+           
+            animation: cloudone 7s infinite;
+        }
+        .cloud img:nth-child(3){
+           
+            animation: cloudone 10s infinite;
+        }
+        @keyframes cloudone {
+            from {
+                left: 0;
+            }
+
+            to {
+                left: -200%;
+            }
+        }
+      
+    </style>
+</body>
+
+</html>

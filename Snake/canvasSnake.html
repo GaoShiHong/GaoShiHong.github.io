@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="300">
+
+    </canvas>
+    <div class="music">
+
+    </div>
+</body>
+<style>
+    #myCanvas {
+        border: 1px solid black;
+    }
+    .music{
+        display: none;
+    }
+</style>
+<script>
+    var rectSize = 10;
+    var canvas = document.querySelector('#myCanvas');
+    var canvasWidth = parseInt(window.getComputedStyle(canvas).width) / rectSize;
+    var canvasHeight = parseInt(window.getComputedStyle(canvas).height) / rectSize;
+    var ctx = canvas.getContext("2d");
+    var speed = 100;
+    var x = [];//蛇方块的x轴位置
+    var y = [];//蛇方块的y轴位置
+    var direction = 'right';
+    var newx;//蛇头的x
+    var newy;//蛇头的y
+    var randomx;
+    var randomy;
+    var death = false;
+    var ifrandom = false;
+    var anjian=true;
+    var music=document.querySelector('.music');
+    //创建随机食物函数
+    function random(wid) {
+        return Math.floor(Math.random() * wid);
+    }
+    //食物不会出现在蛇身上
+    function drawRandom() {
+        do {
+            randomx = random(canvasWidth);
+            randomy = random(canvasHeight);
+            for (let index = 0; index < x.length ; index++) {
+                if (randomx == x[index] && randomy == y[index]) {
+
+                    ifrandom = true;
+
+                } else {
+                    ifrandom = false;
+                }
+            }
+        } while (ifrandom);
+
+
+
+    }
+    function drawfood() {
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(randomx * 10, randomy * 10, rectSize, rectSize);
+    }
+    //画蛇函数
+    function drawSnake(x, y) {
+        ctx.clearRect(0, 0, 500, 300);
+
+        if (direction == 'right') {
+            newx = x[x.length - 1] + 1;
+            newy = y[y.length - 1];
+            if (newx < canvasWidth) {
+                x.push(newx);
+                // x.shift();
+                y.push(newy);
+                // y.shift();
+            } else {
+                death = true;
+                clearInterval(time);
+                gameover();
+            }
+
+        }
+        else if (direction == 'left') {
+            newx = x[x.length - 1] - 1;
+            newy = y[y.length - 1];
+            if (newx >= 0) {
+                x.push(newx);
+                // x.shift();
+                y.push(newy);
+                // y.shift();
+            } else {
+                death = true;
+                clearInterval(time);
+                gameover();
+            }
+        }
+        else if (direction == 'up') {
+            newx = x[x.length - 1];
+            newy = y[y.length - 1] - 1;
+            if (newy >= 0) {
+                x.push(newx);
+                // x.shift();
+                y.push(newy);
+                // y.shift();
+            } else {
+                death = true;
+                clearInterval(time);
+                gameover();
+            }
+
+        }
+        else if (direction == 'down') {
+            newx = x[x.length - 1];
+            newy = y[y.length - 1] + 1;
+            if (newy < canvasHeight) {
+                x.push(newx);
+                // x.shift();
+                y.push(newy);
+                // y.shift();
+            } else {
+                death = true;
+                clearInterval(time);
+                gameover();
+            }
+
+        }
+        //判断是否撞到自己
+        for (let index = 0; index < x.length - 1; index++) {
+            if (newx == x[index]) {
+                if (newy == y[index]) {
+                    death = true;
+                    clearInterval(time);
+                    gameover();
+                }
+            }
+        }
+        //是否吃到食物
+        if (newx == randomx && newy == randomy) {
+            drawRandom();
+            creadtAudio('11299.mp3');
+        } else {
+            if (!death) {
+                x.shift();
+                y.shift();
+            }
+
+        }
+        drawfood();
+        for (var index = 0; index < x.length; index++) {
+            ctx.fillStyle = "#000";
+            ctx.fillRect(10 * x[index], 10 * y[index], rectSize, rectSize);
+        }
+        anjian=true;
+    }
+
+    function initialize(length) {
+        for (var i = 0; i < length; i++) {
+            x[i] = i;
+        }
+        for (var i = 0; i < length; i++) {
+            y[i] = 0;
+        }
+    }
+
+    drawRandom();
+    initialize(1)
+    //蛇的移动
+
+    var time = setInterval(function () {
+        // debugger;
+
+        drawSnake(x, y);
+
+
+
+    }, speed);
+
+    //按键函数
+    document.onkeydown = function (e) {
+
+        console.log(e.key);
+        if (anjian) {
+            anjian=false;
+            switch (e.key) {
+            case 'ArrowUp':
+                if (direction != 'down') {
+                    direction = 'up';
+                }
+                break;
+            case 'ArrowDown':
+                if (direction != 'up') {
+                    direction = 'down';
+                }
+
+                break;
+            case 'ArrowLeft':
+                if (direction != 'right') {
+                    direction = 'left';
+                }
+
+                break;
+            case 'ArrowRight':
+                if (direction != 'left') {
+                    direction = 'right';
+                }
+
+                break;
+            default:
+                break;
+        }
+        }
+        
+
+    }
+
+    function gameover() {
+
+    }
+    function creadtAudio(url) {
+        var audio=document.createElement('audio');
+        // audio.setAttribute('controls','true');
+        audio.setAttribute('src',url);
+        music.appendChild(audio);
+        audio.play();
+        audio.onended=function(){
+            music.removeChild(audio);
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,181 @@
+@var1:200px;
+@var2:120px;
+@var3:180px;
+@var4:130px;
+@var5:100px;
+@var6:150px;
+
+.stage,body,html{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.stage{
+    background: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    .cude{
+        width: 200px;
+        height: 400px;
+        color: white;
+        background: url("./imgs/600x600.jpg") no-repeat center center;
+        background-size: cover;
+        border-radius: 20px;
+        transform-style: preserve-3d;
+        // transform:translateZ(220px) rotateX(0deg) rotateY(30deg);
+        transform: translateZ(220px) rotateX(0deg);
+        transform-origin: 50% 50% 50px;
+        transition: all 1s;
+        box-shadow: 0 0 10px 5px rgba(255, 0, 0, .3);
+        position: relative;
+        display: flex;
+        // text-align: center;
+        flex-wrap: wrap;
+        text-align: center;
+        align-items: center;
+        &::before{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: black;
+            border-radius: 20px;
+            transform: translateZ(-20px);
+            box-shadow: 0 0 10px 5px rgba(255, 0, 0, .3);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        h2,p,h3,.chart{
+          transition: all 1s;
+            flex-basis: 100%;
+        }
+        &.active{
+            transform: translateZ(220px) rotateX(60deg);
+            h2,p,h3{
+                transform: translateZ(50px);
+              
+            }
+            .chart{
+                .bar{
+                  
+                   &:nth-child(1){
+                    transform: rotate(-45deg) translateZ(@var1);
+                   }
+                   &:nth-child(2){
+                    transform: rotate(-45deg) translateZ(@var2);
+                   }
+                   &:nth-child(3){
+                    transform: rotate(-45deg) translateZ(@var3);
+                   }
+                   &:nth-child(4){
+                    transform: rotate(-45deg) translateZ(@var4);
+                   }
+                   &:nth-child(5){
+                    transform: rotate(-45deg) translateZ(@var5);
+                   }
+                   &:nth-child(6){
+                    transform: rotate(-45deg) translateZ(@var6);
+                   }
+                }
+            }
+        }
+        .chart{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+           
+            .bar{
+                width: 20px;
+                height: 20px;
+              
+                background: lightsalmon;
+                transform: rotate(-45deg);
+                transition: all 1s;
+                position: relative;
+                transform-style: preserve-3d;
+                perspective: 2000px;
+               &:nth-child(1){
+                &::before{
+                    .beforefun(@var1);
+                }
+                &::after{
+                    .afterfun(@var1);
+                }
+               }
+               &:nth-child(2){
+                &::before{
+                    .beforefun(@var2);
+                }
+                &::after{
+                    .afterfun(@var2);
+                }
+               }
+               &:nth-child(3){
+                &::before{
+                    .beforefun(@var3);
+                }
+                &::after{
+                    .afterfun(@var3);
+                }
+               }
+               &:nth-child(4){
+                &::before{
+                    .beforefun(@var4);
+                }
+                &::after{
+                    .afterfun(@var4);
+                }
+               }
+               &:nth-child(5){
+                &::before{
+                    .beforefun(@var5);
+                }
+                &::after{
+                    .afterfun(@var5);
+                }
+               }
+               &:nth-child(6){
+                &::before{
+                    .beforefun(@var6);
+                }
+                &::after{
+                    .afterfun(@var6);
+                }
+               }
+            }
+        }
+        
+    }
+    
+}
+.afterfun(@var){
+    content: '';
+    width: 100%;
+     height: @var;
+    background: red;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotateX(-90deg) translateY(@var);
+   transform-origin: bottom;
+    transition: all 1s linear;
+}
+.beforefun(@vars){
+    content: '';
+    width: @vars;
+    height: 100%;
+    background: blue;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-90deg) translateX(-@vars);
+    transform-origin: left;
+    transition: all 1s linear;
+}

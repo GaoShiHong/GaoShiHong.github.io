@@ -1,0 +1,65 @@
+.stage {
+  width: 150px;
+  height: 100px;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+.stage .content {
+  overflow: hidden;
+  margin-left: -150px;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+.stage .content li {
+  list-style: none;
+  float: left;
+}
+.stage .content li img {
+  vertical-align: middle;
+}
+.stage .dot {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+}
+.stage .dot i {
+  width: 10px;
+  height: 10px;
+  background: white;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 50%;
+}
+.stage .dot i.active {
+  background: lightcoral;
+  box-shadow: 1px 1px 2px 1px blue;
+}
+.stage .arrow i {
+  width: 15px;
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 50%;
+}
+.stage .arrow i.prev {
+  background: url('img/prev.png');
+  background-size: 100% 100%;
+}
+.stage .arrow i.next {
+  background: url('img/next.png');
+  background-size: 100% 100%;
+  left: auto;
+  right: 0;
+}
+.pos {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/*# sourceMappingURL=./sliderStyle.css.map */

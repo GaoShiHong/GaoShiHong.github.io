@@ -1,0 +1,156 @@
+* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		body {
+			
+		}
+		
+		.sethigh:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		
+		.fl {
+			float: left;
+		}
+		
+		.fr {
+			float: right;
+		}
+		
+		.header {
+			padding-top: 20px;
+			background: url(img/banner.jpg) no-repeat;
+			padding-bottom: 50px;
+		}
+		
+		#heading {
+			width: 1040px;
+			height: 58px;
+			background-color: #897f6c;
+			background: rgba(0, 0, 0, 0.41);
+			margin: 0 auto;
+		
+		}
+		
+		#heading_lan {
+		
+			float: left;
+		}
+		
+		#heading_lan ul {
+			list-style: none;
+		}
+		
+		#heading_lan ul li {
+			float: left;
+			margin-top: 20px;
+			color: white;
+		
+		}
+		
+		#heading_lan ul li:after {
+			content: '/';
+			color: white;
+		}
+		
+		#heading_lan ul li:last-child:after {
+			content: none;
+		}
+		
+		#heading_lan ul li a {
+			text-decoration: none;
+			color: white;
+			margin: 10px;
+		}
+		
+		#heading_lan ul li:nth-child(2) a {
+			border-top: 4px solid #faee0d;
+			color: #faee0d;
+		}
+		
+		#heading_lan ul li a:hover {
+			border-top: 4px solid #faee0d;
+			color: #faee0d;
+			transition: all 0.3s;
+		}
+		
+		form {
+			float: right;
+			position: relative;
+			margin-top: 12px;
+			margin-right: 20px;
+		}
+		
+		#text {
+		
+			background: none;
+			border: white solid 1px;
+			height: 30px;
+			color: white;
+			outline: none;
+		}
+		
+		#sub {
+			width: 22px;
+			height: 22px;
+			background: url(img/search.png);
+			background-repeat: none;
+			background-position: center;
+			border: none;
+			position: absolute;
+			right: 0px;
+			top: 6px;
+			float: right;
+		}
+		
+		.cu {
+			margin: 100px auto;
+			font-family: 'Lobster', cursive;
+		    color: white;
+		    font-size: 5em;
+		    text-align: center
+			
+		}
+		
+		.cu span {
+			border-top: white solid 5px;
+			border-bottom: white solid 5px;
+		}
+		
+		/* about */
+		.about{
+			width: 80%;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		.about h2{
+			font-family: 'Lobster', cursive;
+			color: #394c53;
+			font-size: 4em;	
+		}
+		.section1{
+			width: 100%;
+			overflow: hidden;
+		}
+		.advantages{
+			width: 40%;
+		}
+		.advantages h3{
+			font-family: 'Lobster', cursive;
+			color: black;
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.advantages ul li{
+			list-style: disc;
+			list-style-image:url(img/list-arrow.png);
+		}
+		.nulla{
+			width: 60%;
+		}

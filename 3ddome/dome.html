@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="stage">
+        <div class="cude">
+            <h2>STEPS</h2>
+            <p>THIS WEEK</p>
+            <div class="chart">
+                <span class="bar bar1"><i></i></span>
+                <span class="bar bar3"><i></i></span>
+                <span class="bar bar3"><i></i></span>
+                <span class="bar bar4"><i></i></span>
+                <span class="bar bar5"><i></i></span>
+                <span class="bar bar6"><i></i></span>
+            </div>
+            <h3>93,000</h3>
+        </div>
+    </div>
+</body>
+<script>
+    document.querySelector('.cude').onclick=function(){
+       
+        if (document.querySelector('.cude').className.includes('active')) {
+            document.querySelector('.cude').className='cude';
+        }else{
+            document.querySelector('.cude').className='cude active';
+        }
+    }
+</script>
+</html>

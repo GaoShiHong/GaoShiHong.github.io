@@ -1,0 +1,362 @@
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		body {
+			
+		}
+		
+		.sethigh:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		
+		.fl {
+			float: left;
+		}
+		
+		.fr {
+			float: right;
+		}
+		
+		.header {
+			padding-top: 20px;
+			background: url(img/banner.jpg) no-repeat;
+			padding-bottom: 50px;
+		}
+		
+		#heading {
+			width: 1040px;
+			height: 58px;
+			background-color: #897f6c;
+			background: rgba(0, 0, 0, 0.41);
+			margin: 0 auto;
+		
+		}
+		
+		#heading_lan {
+		
+			float: left;
+		}
+		
+		#heading_lan ul {
+			list-style: none;
+		}
+		
+		#heading_lan ul li {
+			float: left;
+			margin-top: 20px;
+			color: white;
+		
+		}
+		
+		#heading_lan ul li:after {
+			content: '/';
+			color: white;
+		}
+		
+		#heading_lan ul li:last-child:after {
+			content: none;
+		}
+		
+		#heading_lan ul li a {
+			text-decoration: none;
+			color: white;
+			margin: 10px;
+		}
+		
+		#heading_lan ul li:last-child a {
+			border-top: 4px solid #faee0d;
+			color: #faee0d;
+		}
+		
+		#heading_lan ul li a:hover {
+			border-top: 4px solid #faee0d;
+			color: #faee0d;
+			transition: all 0.3s;
+		}
+		
+		form {
+			float: right;
+			position: relative;
+			margin-top: 12px;
+			margin-right: 20px;
+		}
+		
+		#text {
+		
+			background: none;
+			border: white solid 1px;
+			height: 30px;
+			color: white;
+			outline: none;
+		}
+		
+		#sub {
+			width: 22px;
+			height: 22px;
+			background: url(img/search.png);
+			background-repeat: none;
+			background-position: center;
+			border: none;
+			position: absolute;
+			right: 0px;
+			top: 6px;
+			float: right;
+		}
+		
+		.cu {
+			margin: 100px auto;
+			font-family: 'Lobster', cursive;
+		    color: white;
+		    font-size: 5em;
+		    text-align: center
+			
+		}
+		
+		.cu span {
+			border-top: white solid 5px;
+			border-bottom: white solid 5px;
+		}
+		.ContactUs{
+			width: 80%;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		.ContactUs h3{
+			font-family: 'Lobster', cursive;
+			color: #394c53;
+			font-size: 4em;	
+		}
+		.form1{
+			overflow: hidden;
+		}
+		.form1 div{
+			width: 33.33%;
+			padding-right: 10px;
+		}
+		.form1 div input{
+			width: 100%;
+			line-height: 40px;
+			text-decoration: none;
+			outline: none;
+			border:#c1c1c1 solid 1px;
+			background: none;
+			padding-left: 8px;
+			color: lightblue;
+			font-size: 20px;
+		}
+		.forms h4{
+			text-align: left;
+			font-size: 1.2em;
+			color: #000;
+			font-weight: 600;
+			padding: 0 0 0.5em;
+		}
+		.form1 div input:hover{
+			border: #008000 solid 1px;
+		}
+		.form2{
+			margin:10px 0px;
+		}
+		.area{
+			width: 100%;
+			height: 400px;
+			text-decoration: none;
+			outline: none;
+			border:#c1c1c1 solid 1px;
+			background: none;
+			padding-left: 8px;
+			color: lightblue;
+			font-size: 20px;
+		}
+		.area:hover{
+			border: #008000 solid 1px;
+		}
+		.form3 a{
+			width: 120px;
+			line-height: 40px;
+			text-decoration: none;
+			background-color: #008000;
+			display: block;
+			color: white;
+			margin-bottom: 20px;
+		}
+		.form3 a:hover{
+			background-color: #FFFF00;
+			transition: all 1s;
+		}
+		
+		
+		
+		.others {
+			background-color: #3f454d;
+			width: 100%;
+		}
+		
+		.others1 {
+			width: 1140px;
+			margin: 0 auto;
+		}
+		
+		.juli {
+			width: 33.33%;
+		
+			text-align: left;
+		}
+		
+		.juli h3 {
+			font-weight: 600;
+			font-size: 28px;
+			margin: 20px 0px;
+			color: white;
+		}
+		
+		.upcome {
+			/* margin: 10px; */
+		}
+		
+		.upcome img {
+			float: left;
+			width: 25%;
+			padding: 8px 8px 8px 0px;
+		}
+		
+		.upcome .jianjie {
+			float: left;
+			width: 75%;
+			text-align: left;
+			padding-top: 10px;
+		}
+		
+		.upcome .jianjie h5 {
+			font-weight: 600;
+			font-size: 18px;
+			color: white;
+		}
+		
+		.upcome .jianjie p {
+			color: #999999;
+			font-weight: 300;
+		}
+		
+		.Categories img {
+			width: 3%;
+			position: relative;
+			top: 16px;
+		
+		}
+		
+		.Categories p {
+			width: 97%;
+			line-height: 44px;
+			padding-left: 15px;
+			color: #999999;
+			font-weight: 300;
+		}
+		
+		.Contact .tels {
+			width: 13%;
+			height: 60px;
+			background-image: url(img/img-sprite1.png);
+			background-position: -218px 0px;
+		}
+		
+		.Contact .num {
+			width: 87%;
+		}
+		
+		.Contact .addrids {
+			width: 13%;
+			height: 60px;
+			background-image: url(img/img-sprite1.png);
+			background-position: -254px 0px;
+		}
+		
+		.Contact .emalis {
+			width: 13%;
+			height: 60px;
+			background-image: url(img/img-sprite1.png);
+			background-position: -295px 0px;
+		}
+		
+		.line p {
+			color: #999999;
+			font-weight: 300;
+		}
+		
+		.line {
+			margin-top: 28px;
+		}
+		
+		.setcolor p:hover {
+			color: #FAEE0D;
+			transition: all 1s;
+		}
+		
+		
+		
+		/* lastdome */
+		.lastdome {
+			width: 1140px;
+			margin: 0 auto;
+		}
+		
+		.picdome {
+			text-align: center;
+		}
+		
+		.picdome1 {
+			background-position: -0px 0px;
+		}
+		
+		.picdome2 {
+		
+			background-position: -55px 0px;
+		}
+		
+		.picdome3 {
+		
+			background-position: -112px 0px;
+		}
+		
+		.picdome4 {
+		
+			background-position: -165px 0px;
+		}
+		
+		.setjuli {
+			width: 52px;
+			height: 52px;
+			background-image: url(img/img-sprite1.png);
+			margin: 25px 15px;
+		}
+		
+		.setcenter {
+			width: 30%;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		
+		.navdome ul {
+			text-align: center;
+		}
+		
+		.navdome ul li {
+		
+			list-style: none;
+			display: inline;
+			margin: 20px;
+		}
+		
+		.addresdome h3 {
+			margin: 50px auto;
+			text-align: center;
+			font-weight: 500;
+		}
+		

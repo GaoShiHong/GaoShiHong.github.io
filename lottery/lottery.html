@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="lotteryLess.css" type="text/css">
+</head>
+<body>
+    <div>
+        <img class="bg" src="./image/lottery-turntable-bg.jpg"/>
+        <img class="lottery" src="./image/lottery-turntable.png"/>
+        <img class="but" src="./image/lottery-pointer.png"/>
+    </div>
+    <script>
+        var lottery=document.getElementsByClassName('lottery')[0];
+        var but=document.getElementsByClassName('but')[0];
+        var info={}
+        var again=true;
+        var cricle;
+        but.onclick=function(){
+            // debugger;
+            if (again) {
+                again=false; 
+                // lottery.style. transition='all 0s';           
+            // lottery.style. transform='rotate(0deg)';
+           
+                setTimeout(function(){  
+                   
+                var radowNmber=Math.round(Math.random()*100);
+            if (radowNmber<3) {
+                info.sorce=1;
+                info.alerts="免单4999元"
+            } else if (radowNmber<11) {
+                info.sorce=2;
+                info.alerts="免单50元"
+            } else if (radowNmber<23) {
+                info.sorce=3;
+                info.alerts="免单10元"
+            } else if(radowNmber<38){
+                info.sorce=4;
+                info.alerts="免单5元"
+            } else if (radowNmber<55) {
+                info.sorce=5;
+                info.alerts="免分期服务费"
+            } else if(radowNmber<75){
+                info.sorce=6;
+                info.alerts="提高白条额度"
+            } else {
+                info.sorce=7;
+                info.alerts="多谢惠顾"
+            }
+            
+            cricle=30+(info.sorce-1)*(360/7);          
+            lottery.style. transition='all 3s';
+            // lottery.style. transform='rotate(cricle)';
+            lottery.style. transform='rotate('+(cricle+1800)+'deg)';
+            },10);
+            setTimeout(function(){
+                lottery.style. transition='all 0s';  
+                lottery.style. transform='rotate('+cricle+'deg)';
+                again=true;
+                alert(info.alerts);
+            },3000);
+           
+            } else {
+                
+            }
+           
+                
+        }
+    </script>
+</body>
+</html>

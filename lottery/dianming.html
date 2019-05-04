@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="dingStyle.css" type="text/css">
+</head>
+
+<body>
+    <div>
+        <div class="di"></div>
+        <!-- <div class="di"></div> -->
+        <button>点名</button>
+    </div>
+    <script>
+        var ran1;
+        var ran2;
+        var arrayname=['毛二','张三','李四','王五','刘六','齐七','吕八','郑九','高十','柳一'
+        ,'信升','卓贤','帆枫','信浩','文梁','禧盛','浩涛','潍彬','宇弘','高杰','杰凡','睿强'
+        ,'柔腾','佑烁','诚延','钊烁','谷凡','暄邦','博远','振鑫','驰延','延烁','锐震','卓郁'
+        ,'振柔','杞尧','泽峰','逸楷','喆轩','阳翱','帝勇','恒信','谛谛','驰文','康梓','逸谷'
+        ,'彬轩','升骞','延铭','嘉瑞','潍晨','奇俊','晨辞','福楷','邦锐','信宇','楷裕','天弘'
+        ,'鹤安','阳锦','龙晓','祥晨','畅平','林裕','家俊','芃胤','浩韦','峰栋','郁平','博胤'
+        ]                                    
+                                                 
+                //              成成         锐延   恒家   琛祯   沛晓  礼帝 
+                //    安文         礼德   礼轩   祜裕   韦阳   帆年   阳枫   良邦   凡勇    
+                //         坤锐      阳乘
+
+        var start=0;
+        var but=document.getElementsByTagName('button')[0];
+        var divs = document.getElementsByClassName('di');
+        // divs[0].innerHTML=ran1;
+        // divs[1].innerHTML=ran2;
+        but.onclick=function(){
+            // debugger;
+            
+               
+                    setTimeout(function(){
+                        bianhua();
+                        start++;
+                        
+
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                      
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                       
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                       
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                        
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                       
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                       
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                       
+                        
+                        setTimeout(function(){
+                        bianhua();
+                        start++;
+                       
+                        
+                    },100);
+                    },100);
+                    },100);
+                    },100);
+                    },100);
+                    },100);
+                    },100);
+                    },100);
+                    },100);
+                    
+                
+               
+        }
+        function bianhua(){
+                // divs[0].style.transition='all 0.5s';
+                // divs[1].style.transition='all 0.5s';
+                ran1 = Math.floor(Math.random() * 70);
+                // ran2 = Math.floor(Math.random() * 10);
+                divs[0].innerHTML=arrayname[ran1];
+                console.log(arrayname[ran1]+' :'+ran1);
+                
+                // divs[1].innerHTML=ran2;
+        }
+    </script>
+</body>
+
+</html>

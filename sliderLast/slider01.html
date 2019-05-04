@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="sliderStyle.css">
+</head>
+
+<body>
+    <div class="stage">
+        <div class="content">
+            <li value="0"><img src="./img/picture6.jpg"></li>
+            <li value="1"><img src="./img/picture7.jpg"></li>
+            <li value="2"><img src="./img/picture8.jpg"></li>
+            <li value="3"><img src="./img/picture9.jpg"></li>
+        </div>
+        <div class="dot"></div>
+        <div class="arrow">
+            <i class="prev"></i>
+            <i class="next"></i>
+        </div>
+    </div>
+</body>
+<style>
+
+</style>
+<script>
+    var isoverchage = true;
+    var isdotchage = true;
+    $('.content').css('width', parseInt($('.stage').css('width')) * $('.stage .content li').length);
+    $('.content img').css('width', parseInt($('.stage').css('width')));
+    //创建圆点
+    for (var i = 0; i < 4; i++) {
+        $('<i></i>').appendTo($('.dot'));
+    }
+    $('.stage .dot i').eq(0).addClass('active');
+
+    //记录原本次序
+    var lis = $('.stage .content li');
+    $('.stage .content').prepend(lis.eq(3));
+    //创建圆点点击事件
+    $($('.stage .dot i')).click(function () {
+        //    console.log($(this).index());
+        light($(this).index());
+        if (isdotchage) {
+            isdotchage = false;
+            if ($(this).index() > lis.index($('.stage .content li').eq(1))) {
+                nextdotPic($(this).index());
+                // console.log(">>>");
+            } else if($(this).index() < lis.index($('.stage .content li').eq(1))){
+
+                prevdotPic($(this).index());
+                // console.log("<<<");
+            }
+
+        }
+
+
+    });
+    //方向键点击事件
+    $('.prev').click(function () {
+        prevarrowPic();
+    });
+    $('.next').click(function () {
+        nextarrowPic();
+    });
+    //圆点高亮函数
+    function light(nowindex) {
+        if (isdotchage && isoverchage) {
+            $('.stage .dot i').eq(nowindex).addClass('active').siblings().removeClass('active');
+        }
+
+    }
+    //下一张图片
+    function nextPic() {
+        //判断是否过渡结束
+        if (isoverchage) {
+            isoverchage = false;
+            $('.stage .content').css({
+                'transition': "all 1s",
+                'margin-left': '-300px'
+
+            }).one('transitionend', function () {
+                isoverchage = true;
+                isdotchage = true;
+                $('.stage .content').append($('.stage .content li').first()).css({
+                    'transition': "all 0s",
+                    'margin-left': '-150px'
+                })
+            })
+        }
+
+    }
+    //上一张图片
+    function prevPic() {
+        //判断是否过渡结束
+        if (isoverchage) {
+            isoverchage = false;
+            $('.stage .content').css({
+                'transition': "all 1s",
+                'margin-left': '0px'
+
+            }).one('transitionend', function () {
+                isoverchage = true;
+                isdotchage = true;
+                $('.stage .content').prepend($('.stage .content li').last()).css({
+                    'transition': "all 0s",
+                    'margin-left': '-150px'
+                })
+            })
+        }
+
+    }
+    //圆点点击事件函数
+    function nextdotPic(nextindex) {
+        var nowli = $('.stage .content li').eq(1);
+        var nextli = lis.eq(nextindex);
+        // console.log(nextli);  
+        if (nextli[0] == $('.stage .content li').first()[0]) {
+            // console.log("==");
+
+            nowli.after(nextli);
+            $('.stage .content').prepend($('.stage .content li').last())
+        } else {
+            nowli.after(nextli);
+        }
+        nextPic();
+    }
+    function prevdotPic(nextindex) {
+        var nowli = $('.stage .content li').eq(1);
+        var nextli = lis.eq(nextindex);
+        // console.log(nextli);  
+        if (nextli[0] == $('.stage .content li').first()[0]) {
+            // console.log("==");
+        } else {
+            $('.stage .content').append($('.stage .content li').first()).prepend(nextli);
+        }
+        prevPic();
+    }
+    //方向键点击函数
+    function nextarrowPic() {
+        var nowindex = lis.index($('.stage .content li').eq(1));
+        var nextindex = nowindex + 1;
+        if (nextindex > lis.length - 1) {
+            nextindex = 0;
+        }
+        nextdotPic(nextindex);
+        $('.stage .content').one('transitionend', function () {
+            light(nextindex);
+        });
+        // light(nextindex);
+        // console.log(nextindex);
+
+    }
+    function prevarrowPic() {
+        var nowindex = lis.index($('.stage .content li').eq(1));
+        var nextindex = nowindex - 1;
+        if (nextindex < 0) {
+            nextindex = lis.length - 1;
+        }
+        prevdotPic(nextindex);
+        $('.stage .content').one('transitionend', function () {
+            light(nextindex);
+        });
+        // console.log(nextindex);
+        // light(nextindex);
+    }
+</script>
+
+</html>

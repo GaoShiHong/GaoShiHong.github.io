@@ -1,0 +1,22 @@
+body > div {
+  margin: 0 auto;
+  width: 204px;
+  text-align: center;
+}
+body > div .di {
+  width: 200px;
+  height: 100px;
+  background: white;
+  border: 1px solid slategray;
+  float: left;
+  box-shadow: 2px 1px 3px blueviolet;
+  font-size: 80px;
+}
+body > div button {
+  width: 100px;
+  line-height: 50px;
+  font-size: 40px;
+  margin: 30px auto;
+  clear: both;
+}
+/*# sourceMappingURL=./dingStyle.css.map */

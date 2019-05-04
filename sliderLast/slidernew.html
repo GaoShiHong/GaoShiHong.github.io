@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="sliderStyle.css">
+</head>
+
+<body>
+    <div class="stage">
+        <div class="content">
+            <li value="0"><img src="./img/picture6.jpg"></li>
+            <li value="1"><img src="./img/picture7.jpg"></li>
+            <li value="2"><img src="./img/picture8.jpg"></li>
+            <li value="3"><img src="./img/picture9.jpg"></li>
+        </div>
+        <div class="dot"></div>
+        <div class="arrow">
+            <i class="prev"></i>
+            <i class="next"></i>
+        </div>
+    </div>
+</body>
+<style>
+    div.content li.active {
+        margin-left: 400px;
+    }
+</style>
+<script>
+    $('.content').css('width', parseInt($('.stage').css('width')) * $('.stage .content li').length);
+    $('.content img').css('width', parseInt($('.stage').css('width')));
+    //创建圆点
+    for (var i = 0; i < 4; i++) {
+        $('<i></i>').appendTo($('.dot'));
+    }
+    $('.stage .dot i').eq(1).addClass('active');
+    $('.stage .content li').eq(0).css('margin-left', -400);
+    //记录原本次序
+    var lis = $('.stage .content li');
+    var nowli;
+    $('.next').click(function () {
+        nowli = $('.stage .content li').eq(1);
+        nextPic(nowli);
+    });
+    $('.prev').click(function () {
+        nowli = $('.stage .content li').eq(1);
+        prevPic(nowli);
+    });
+    $('.stage .dot i').click(function () {
+        // $(this).addClass('active').siblings().removeClass('active');
+        move(this);
+    });
+    //next函数
+    function nextPic(nowli) {
+
+        // nowli = $('.stage .content li').eq(1);
+        nowli.css({
+            'transition': 'all 2s',
+            'margin-left': '-200px'
+        }).prev().css({
+            'margin-left': '0px'
+        }).appendTo($('.content'));
+        var nowNum = lis.index($('.stage .content li').eq(1));
+        $('.stage .dot i').eq(nowNum).addClass('active').siblings().removeClass('active');
+    }
+    //prev函数
+    function prevPic(nowli) {
+        // nowli = $('.stage .content li').eq(1);
+        nowli.prev().css({
+            'transition': 'all 2s',
+            'margin-left': '0px'
+        })
+        $('.stage .content li').last().css({
+            'transition': 'all 0s',
+            'margin-left': '-200px'
+        }).prependTo($('.content'));
+        var nowNum = lis.index($('.stage .content li').eq(1));
+        $('.stage .dot i').eq(nowNum).addClass('active').siblings().removeClass('active');
+    }
+    function move(nowthis) {
+        nowli = $('.stage .content li').eq(1);
+        var nowNum = lis.index(nowli);
+        var nextNum = nowNum + 1 > $('.stage .content li').length - 1 ? 0 : nowNum + 1;
+        var dotNum = $('.stage .dot i').index($(nowthis));
+
+
+        if (nowNum < dotNum) {
+            nowli.after(lis.eq(dotNum));
+            console.log(nowNum + '<' + dotNum);
+            console.log(nowli);
+            nextPic(nowli);
+            initialize();
+        }
+        else if (nowNum > dotNum) {
+            console.log(nowNum + '>' + dotNum);
+            // console.log(nowNum+"asdf"+dotNum);
+            nowli.before(lis.eq(dotNum));
+
+
+            nowli.prev().css({
+                'transition': 'all 0s',
+                'margin-left': '-200px'
+            });
+            if (nowli.prev() == $('.stage .content li').first()) {
+                // $('.stage .content').prepend($('.stage .content li').last());
+            } else {
+                $('.stage .content').append($('.stage .content li').first());
+            }
+            console.log(nowli);
+            prevPic(nowli);
+            initialize();
+        }
+    }
+    //每次事件过后初始化每个margin-left值
+    function initialize() {
+        for (var i = 0; i < $('.stage .content li').length; i++) {
+            if (i == 0) {
+                $('.stage .content li').eq(i).css({
+                   
+                    'margin-left': '-200px'
+                });
+            }
+            else {
+                $('.stage .content li').eq(i).css({
+                   
+                    'margin-left': '0px'
+                });
+            }
+
+        }
+
+    }
+</script>
+
+</html>

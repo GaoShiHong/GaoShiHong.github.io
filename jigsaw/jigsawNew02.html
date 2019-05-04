@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="stage">
+
+    </div>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .stage {
+        width: 300px;
+        height: 300px;
+        background: lightcoral;
+        margin: 0 auto;
+    }
+
+    .stage ul {
+        list-style: none;
+        overflow: hidden;
+    }
+
+    .stage ul li {
+        float: left;
+        /* background-image: url("./img/1.png"); */
+        /* border: white solid 1px; */
+    }
+</style>
+<script>
+    var stage = document.querySelector('.stage');
+    var stageWidth = parseInt(window.getComputedStyle(stage).width);
+    var stageHeight = parseInt(window.getComputedStyle(stage).height);
+    //创建n*n的拼图快
+    function created(n) {
+        //创建n行
+        for (var i = 0; i < n; i++) {
+            var part = document.createElement('ul');
+            part.style.width = '100%';
+            part.style.height = (stageHeight / n) + 'px';
+            console.log(part.style.height);
+            
+            // part.style.outline = 'blue solid 1px';
+            stage.appendChild(part);
+            for (var j = 0; j < n; j++) {
+                var parts = document.createElement('li');
+                parts.style.width = stageWidth/n + 'px';
+                parts.style.height = "100%";
+                parts.style.outline = '1px red solid ';
+                parts.style.backgroundSize=stageWidth+'px'+" "+stageHeight+'px';
+                stage.children[i].appendChild(parts);
+            }
+        }
+        //每行创建n个拼图块
+
+    }
+    created(4);
+</script>
+
+
+
+</html>

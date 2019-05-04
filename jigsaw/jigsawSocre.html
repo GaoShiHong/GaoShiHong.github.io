@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <!-- <script src="./background.js"></script> -->
+    <link rel="stylesheet" href="./huacecss.css">
+    <link rel="stylesheet" href="./background.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="game">
+            <div class="stage">
+
+                </div>
+    </div>
+    
+    <div class="huace" >
+
+
+        <div class="my-container">
+            <!-- 大容器 -->
+
+            <div class="photo-wrap">
+                <!-- 舞台 -->
+
+                <div class="container">
+                    <!-- 相册容器 -->
+
+                    <img src="./img/1.jpg" alt="" srcset="" class="imgs img01">
+                    <img src="./img/1.png" alt="" srcset="" class="imgs img02">
+                    <img src="./img/10.jpg" alt="" srcset="" class="imgs img03">
+                    <img src="./img/11.jpg" alt="" srcset="" class="imgs img04">
+                    <img src="./img/2.jpg" alt="" srcset="" class="imgs img05">
+                    <img src="./img/3.jpg" alt="" srcset="" class="imgs img06">
+                    <img src="./img/4.jpg" alt="" srcset="" class="imgs img07">
+                    <img src="./img/4.png" alt="" srcset="" class="imgs img08">
+                    <img src="./img/9.jpg" alt="" srcset="" class="imgs img09">
+                </div>
+
+            </div>
+
+            <div class="contol">
+                <input type="text" placeholder="请输入难度" min="2" max="9" value="3">请输入难度</input>
+                <button></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="background" >
+        <img src="./img/loading.gif" alt="" srcset="">
+        <canvas id="myCanvas" width="800" height="240">
+        </canvas>
+    </div>
+    <div class="mask" style="display:none;">
+        <div class="socre"></div>
+    </div>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body ,html{
+        width: 100%;
+        height: 100%;
+
+    }
+    .game{
+        width: 100%;
+        height: 100%;
+        background: lightblue;
+    }
+    .stage {
+        width: 300px;
+        height: 300px;
+       
+        margin: 0 auto;
+        /* position: absolute;
+        top: 20%;
+        left: 20%; */
+    }
+
+    .stage ul {
+        list-style: none;
+    }
+
+    .stage li {
+        float: left;
+        list-style: none;
+        background-image: url("./img/4.png");
+        outline: white solid 1px;
+    }
+    .mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mask .socre{
+        width: 20%;
+        height: 50%;
+        background: rebeccapurple;
+    }
+</style>
+<!-- background.js -->
+<script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var number = 0;
+    var str;
+    function jindu(number) {
+        var percent = 800 / 100 * number;
+        //画圆环
+        ctx.clearRect(0, 0, 800, 240);
+        ctx.beginPath();
+        ctx.lineWidth = 20;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#d3d3d3';
+        ctx.moveTo(0, 120);
+        ctx.lineTo(800, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.strokeStyle = 'orange'
+        ctx.moveTo(0, 120);
+        ctx.lineTo(percent, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.font = "50px 微软雅黑";
+        if (number < 10) {
+            str = '0' + number + '%';
+        }
+        else {
+            str = number + '%';
+        }
+        ctx.fillText(str, 400, 120);
+    }
+
+    var time = setInterval(function () {
+        if (number < 100) {
+
+            jindu(number);
+            number++;
+        }
+        else {
+            clearInterval(time);
+            document.querySelector('.background').className = 'background disnone'
+        }
+    }, 50);
+</script>
+<script>
+    var inputvalue;
+    var imgsrc;
+    var stage = document.querySelector('.stage');
+    var lis;
+    var exch = [];
+    var lightnum = 0;
+    var mask=document.querySelector('.mask');
+    // var stageWidth = parseInt(window.getComputedStyle(stage).width);
+    var stageWidth = $('.stage').outerWidth();
+    var stageHeight = $('.stage').outerHeight();
+    // var stageHeight = parseInt(window.getComputedStyle(stage).height);
+
+    //选图事件
+    $('.imgs').click(function (e) {
+        $(this).appendTo($('.container')).parent().toggleClass('conpause').children().toggleClass('img00');
+        imgsrc = $(this).attr("src");
+        console.log(imgsrc);
+
+    });
+    $('button').click(function (e) {
+        e.preventDefault();
+        $(this).parents('.huace').hide();
+        inputvalue = $('input').val();
+        created(inputvalue);
+        picture(imgsrc);
+        dropShijian();
+        initialize(inputvalue);
+    });
+
+    
+
+
+   
+    //添加事件
+    //添加拼图块的点击事件
+    //javascript方法
+    // for (var i = 0; i < lis.length; i++) {
+    //         lis[i].onclick = function () {
+    //             // console.log("fasd");
+    //             Click(this);
+    //         }      
+    // }
+    //jquery方法
+    $('.stage li').click(function () {
+        Click(this);
+    });
+
+    //拖放事件
+
+    function dropShijian() {
+        lis.forEach(function (element) {
+        element.draggable = "true";
+        // console.log(element);
+        element.addEventListener('dragstart', function () {
+            start(event);
+        });
+        element.addEventListener('dragover', function () {
+            over(event);
+
+
+        });
+        element.addEventListener('drop', function () {
+            drop(event);
+        });
+    });
+    }
+    
+
+    function start(e) {
+        e.dataTransfer.setData("Text", e.target.id);
+    }
+    function drop(e) {
+        e.preventDefault();
+        var data = e.dataTransfer.getData("Text");
+        // document.getElementById(data),e.target
+        // console.log(document.getElementById(data));
+
+        exchange(document.getElementById(data), e.target);
+
+    }
+    function over(e) {
+        e.preventDefault();
+    }
+
+    //创建n*n的拼图快
+    function created(n = 3) {
+        //创建n行
+        for (var i = 0; i < n * n; i++) {
+            var part = document.createElement('li');
+            // part.style.width = (stageWidth / n) + 'px';
+            $(part).css('width', (stageWidth / n) + 'px');
+            part.style.height = (stageHeight / n) + 'px';
+            part.value = i + '';
+            part.title = i + '';
+            part.id = "li" + i;
+            part.style.backgroundSize = stageWidth + 'px' + " " + stageHeight + 'px';
+            stage.appendChild(part);
+        }
+        //每行创建n个拼图块
+        lis = document.querySelectorAll('.stage li');
+    }
+
+    //设置初始化图片偏移量//并实现重置功能
+    function initialize(inputvalue=3) {
+        for (var i = 0; i < inputvalue * inputvalue; i++) {
+            var col = i % inputvalue;
+            var row = Math.floor(i / inputvalue);
+            //    lis[i].style.backgroundPositionX=(stageWidth / inputvalue)*col*-1+'px';
+            //    lis[i].style.backgroundPositionY=(stageHeight / inputvalue)*row*-1+'px';
+            $(lis).eq(i).css({
+                'backgroundPositionX': (stageWidth / inputvalue) * col * -1 + 'px',
+                'backgroundPositionY': (stageHeight / inputvalue) * row * -1 + 'px'
+            });
+        }
+    }
+
+    //换图函数
+    function picture(str = './img/1.jpg') {
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].style.backgroundImage = "url(" + str + ")";
+        }
+    }
+    //获取行数
+    function getrow(rando) {
+        return Math.floor(parseInt(rando.value) / inputvalue) + 1;
+    }
+    //获取列数
+    function getcol(rando) {
+        return parseInt(rando.value) % inputvalue + 1;
+    }
+    //查找功能
+    function findvalue(value) {
+        if (value < 0 || value > inputvalue * inputvalue) {
+            return false;
+        }
+        for (var i = 0; i < stage.children.length; i++) {
+            var number = parseInt(stage.children[i].value);
+            if (value === number) {
+                return stage.children[i];
+            }
+
+        }
+    }
+    function findtitle(title) {
+        if (title < 0 || title > inputvalue * inputvalue) {
+            return false;
+        }
+        for (var i = 0; i < stage.children.length; i++) {
+
+            var number = parseInt(stage.children[i].title);
+            if (title === number) {
+                return stage.children[i];
+
+            }
+        }
+    }
+    //交换功能
+    function exchange(rando1, rando2) {
+        var valuenumber1 = rando1.value;
+        var OpositionX = rando1.style.backgroundPositionX;
+        var OpositionY = rando1.style.backgroundPositionY;
+
+        rando1.style.backgroundPositionX = rando2.style.backgroundPositionX;
+        rando1.style.backgroundPositionY = rando2.style.backgroundPositionY;
+        rando1.value = rando2.value;
+
+        rando2.value = valuenumber1;
+        rando2.style.backgroundPositionX = OpositionX;
+        rando2.style.backgroundPositionY = OpositionY;
+        setTimeout(function () { iswin(); }, 10);
+    }
+    //获取随机图片模块
+    function getpic() {
+        var index = Math.floor(Math.random() * inputvalue * inputvalue);
+        return lis[index];
+    }
+    //打乱图片功能
+    function changeALL() {
+        var rando1;
+        for (var i = 0; i < lis.length; i++) {
+            rando1 = getpic();
+            exchange(rando1, lis[i]);
+        }
+    }
+    //高亮//用exch记录高亮的相应拼图块的value值
+    function Light(rando) {
+        rando.style.outline = " red solid 1px";
+        lightnum++;
+        exch[lightnum - 1] = rando.value;
+    }
+    //取消高亮
+    function removelinght(rando) {
+        rando.style.outline = " white solid 1px";
+    }
+    //点击移动功能
+    function Click(rando) {
+        // Light(rando);
+        // if(lightnum==2){
+        //     lightnum=0;
+        //     exchange(findvalue(exch[0]),findvalue(exch[1]));
+        //     removelinght(findvalue(exch[0]));
+        //     removelinght(findvalue(exch[1]));
+        //     exch=[];
+        //     setTimeout(function () { iswin(); }, 10);
+        // }    
+    }
+    //判断成功功能
+    function iswin() {
+        var win = 0;
+        for (var i = 0; i < lis.length; i++) {
+            var valuenumber = parseInt(lis[i].value);
+            if (valuenumber === i) {
+                win++;
+            }
+        }
+        //成功后
+        if (win === inputvalue * inputvalue) {
+            // clearInterval(jishi);
+            // alert('恭喜完成拼图');
+
+            // setCookie('socre', time + '');
+            //成绩统计
+            // for(var i=0;i<socrenumber.length;i++){
+            //     if(time<socrenumber[i]){
+            //          alert('恭喜打破纪录荣获第'+(i+1)+"名");
+            //         socrenumber[i]=time;
+            //         setCookie(('socre'+(i+1)),time);
+            //         competitionP[i].innerHTML=socrenumber[i];
+            //         return;
+            //     }
+            // }
+            $('.mask').show();
+           
+            
+        }
+    }
+</script>
+
+
+
+</html>

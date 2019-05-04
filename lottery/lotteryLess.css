@@ -1,0 +1,18 @@
+div {
+  width: 650px;
+  margin: 0 auto;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+div .lottery {
+  position: absolute;
+  top: 60px;
+  left: 116px;
+}
+div .but {
+  position: absolute;
+  top: 148px;
+  left: 251px;
+}
+/*# sourceMappingURL=./lotteryLess.css.map */

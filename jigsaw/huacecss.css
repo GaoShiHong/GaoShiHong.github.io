@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.huace {
+    width: 100%;
+    height: 100%;
+    background: #82a6f5;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.my-container {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    background: #eaf048;
+    
+}
+
+.photo-wrap {
+    perspective: 800px;
+    width: 100%;
+    height: 80%;
+    background: #9ff048;
+}
+
+.container {
+    width: 100%;
+    height: 80%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateY360 15s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container:hover {
+    animation-play-state: paused;
+}
+
+.conpause {
+    animation-play-state: paused;
+    animation: rotate 15s ease-in-out infinite;
+}
+
+.imgs {
+    width: 30%;
+    height: 45%;
+    position: absolute;
+    /* 
+    top: 0;
+
+    left: 0; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset;
+    background: pink;
+}
+
+.img01 {
+    transform: rotateY(0deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img02 {
+    transform: rotateY(40deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img03 {
+    transform: rotateY(80deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img04 {
+    transform: rotateY(120deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img05 {
+    transform: rotateY(160deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img06 {
+    transform: rotateY(200deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img07 {
+    transform: rotateY(240deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img08 {
+    transform: rotateY(280deg) translateZ(200px);
+    transition: all 1s;
+}
+
+.img09 {
+    transform: rotateY(320deg) translateZ(200px);
+    transition: all 1s;
+}
+.img00{
+    transform: translateZ(0px);
+}
+@keyframes rotateY360 {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.contol button {
+    background: url("./img/UIGame.png");
+    background-size: 400% 300%;
+    background-position: 110px 126px;
+    width: 110px;
+    height: 50px;
+    border-radius: 20px;
+    outline: none;
+}
+.contol input{
+    width: 110px;
+    height: 20px;
+    border-radius: 20px;
+    outline: none;
+}

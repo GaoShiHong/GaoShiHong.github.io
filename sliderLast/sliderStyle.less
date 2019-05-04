@@ -1,0 +1,61 @@
+.stage{
+    width: 150px;
+    height: 100px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    .content{
+        overflow: hidden;
+        margin-left: -150px;
+      transition: all 1s;
+        li{
+            list-style: none;
+            float: left;
+            img{
+                vertical-align: middle;
+            }
+        }
+    }
+    .dot{
+        text-align: center;
+        .pos;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        i{
+            width: 10px;
+            height: 10px;
+            background: white;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 50%;
+            &.active{
+                background: lightcoral;
+                box-shadow: 1px 1px 2px 1px blue;
+            }
+        }
+    }
+    .arrow{
+        i{
+            width: 15px;
+            height: 25px;
+            .pos;
+            top:50%;
+            &.prev{
+               background: url('./img/prev.png');
+               background-size: 100% 100%;
+            }
+            &.next{
+                background: url('./img/next.png');
+                background-size: 100% 100%;
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+.pos{
+    position: absolute;
+    top: 0;
+    left: 0;
+}

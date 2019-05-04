@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <img src="timg.jpg" />
+        <div class="mask"></div>
+    </div>
+    <div class="big">
+        <img src="timg.jpg" />
+    </div>
+</body>
+<style>
+    .box,.big {
+        width: 200px;
+        height: 140px;
+        float: left;
+        position: relative;
+    }
+
+    .big {
+       
+        margin-left: 20px;
+        overflow: hidden;
+    }
+
+    .big img {
+        width: 300%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    img{
+        display: block;
+    }
+    .mask {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+<script>
+    var box = document.querySelector('.box');
+    var big = document.querySelector('.big');
+    var mask = document.querySelector('.mask');
+    var bigimg= document.querySelector('.big img');
+    box.onmousemove = function (event) {
+        // console.log(event.pageX+" "+event.pageY);
+        // console.log(event);
+        var maskwidth =50;
+        var maskheight=50;
+        
+        var x = event.pageX - 8-maskwidth/2;
+        var y = event.pageY - 8-maskheight/2;
+        var xd=400/(200-50);//img.width-200
+        var yd=280/(140-50);//img.height-140
+        // console.log(x+" "+y);
+        if(x>150){
+            x=150;
+        }
+        if(x<0){
+            x=0;
+        }
+        if(y>90){
+            y=90;
+        }
+        if(y<0){
+            y=0;
+        }
+        mask.style.top = y + 'px';
+        mask.style.left = x + 'px';
+        bigimg.style.top = -y*yd + 'px';
+        bigimg.style.left = -x*xd + 'px';
+    }
+</script>
+
+</html>

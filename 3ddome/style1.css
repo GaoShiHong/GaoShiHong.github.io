@@ -1,0 +1,334 @@
+.stage,
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.stage {
+  background: lightblue;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex;
+  -webkit-box-pack: center;
+     -moz-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+          align-items: center;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-perspective: 2000px;
+          perspective: 2000px;
+}
+.stage .cude {
+  width: 200px;
+  height: 400px;
+  color: white;
+  background: url("imgs/600x600.jpg") no-repeat center center;
+  background-size: cover;
+  border-radius: 20px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translateZ(220px) rotateX(0deg);
+          transform: translateZ(220px) rotateX(0deg);
+  -webkit-transform-origin: 50% 50% 50px;
+      -ms-transform-origin: 50% 50% 50px;
+          transform-origin: 50% 50% 50px;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.3);
+  position: relative;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+          align-items: center;
+}
+.stage .cude::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: black;
+  border-radius: 20px;
+  -webkit-transform: translateZ(-20px);
+          transform: translateZ(-20px);
+  box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.stage .cude h2,
+.stage .cude p,
+.stage .cude h3,
+.stage .cude .chart {
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  flex-basis: 100%;
+}
+.stage .cude.active {
+  -webkit-transform: translateZ(220px) rotateX(60deg);
+          transform: translateZ(220px) rotateX(60deg);
+}
+.stage .cude.active h2,
+.stage .cude.active p,
+.stage .cude.active h3 {
+  -webkit-transform: translateZ(50px);
+          transform: translateZ(50px);
+}
+.stage .cude.active .chart .bar:nth-child(1) {
+  -webkit-transform: rotate(-45deg) translateZ(200px);
+          transform: rotate(-45deg) translateZ(200px);
+}
+.stage .cude.active .chart .bar:nth-child(2) {
+  -webkit-transform: rotate(-45deg) translateZ(120px);
+          transform: rotate(-45deg) translateZ(120px);
+}
+.stage .cude.active .chart .bar:nth-child(3) {
+  -webkit-transform: rotate(-45deg) translateZ(180px);
+          transform: rotate(-45deg) translateZ(180px);
+}
+.stage .cude.active .chart .bar:nth-child(4) {
+  -webkit-transform: rotate(-45deg) translateZ(130px);
+          transform: rotate(-45deg) translateZ(130px);
+}
+.stage .cude.active .chart .bar:nth-child(5) {
+  -webkit-transform: rotate(-45deg) translateZ(100px);
+          transform: rotate(-45deg) translateZ(100px);
+}
+.stage .cude.active .chart .bar:nth-child(6) {
+  -webkit-transform: rotate(-45deg) translateZ(150px);
+          transform: rotate(-45deg) translateZ(150px);
+}
+.stage .cude .chart {
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex;
+  justify-content: space-around;
+}
+.stage .cude .chart .bar {
+  width: 20px;
+  height: 20px;
+  background: lightsalmon;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-perspective: 2000px;
+          perspective: 2000px;
+}
+.stage .cude .chart .bar:nth-child(1)::before {
+  content: '';
+  width: 200px;
+  height: 100%;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-90deg) translateX(-200px);
+          transform: rotateY(-90deg) translateX(-200px);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(1)::after {
+  content: '';
+  width: 100%;
+  height: 200px;
+  background: red;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotateX(-90deg) translateY(200px);
+          transform: rotateX(-90deg) translateY(200px);
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(2)::before {
+  content: '';
+  width: 120px;
+  height: 100%;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-90deg) translateX(-120px);
+          transform: rotateY(-90deg) translateX(-120px);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(2)::after {
+  content: '';
+  width: 100%;
+  height: 120px;
+  background: red;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotateX(-90deg) translateY(120px);
+          transform: rotateX(-90deg) translateY(120px);
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(3)::before {
+  content: '';
+  width: 180px;
+  height: 100%;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-90deg) translateX(-180px);
+          transform: rotateY(-90deg) translateX(-180px);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(3)::after {
+  content: '';
+  width: 100%;
+  height: 180px;
+  background: red;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotateX(-90deg) translateY(180px);
+          transform: rotateX(-90deg) translateY(180px);
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(4)::before {
+  content: '';
+  width: 130px;
+  height: 100%;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-90deg) translateX(-130px);
+          transform: rotateY(-90deg) translateX(-130px);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(4)::after {
+  content: '';
+  width: 100%;
+  height: 130px;
+  background: red;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotateX(-90deg) translateY(130px);
+          transform: rotateX(-90deg) translateY(130px);
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(5)::before {
+  content: '';
+  width: 100px;
+  height: 100%;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-90deg) translateX(-100px);
+          transform: rotateY(-90deg) translateX(-100px);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(5)::after {
+  content: '';
+  width: 100%;
+  height: 100px;
+  background: red;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotateX(-90deg) translateY(100px);
+          transform: rotateX(-90deg) translateY(100px);
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(6)::before {
+  content: '';
+  width: 150px;
+  height: 100%;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-90deg) translateX(-150px);
+          transform: rotateY(-90deg) translateX(-150px);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+.stage .cude .chart .bar:nth-child(6)::after {
+  content: '';
+  width: 100%;
+  height: 150px;
+  background: red;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotateX(-90deg) translateY(150px);
+          transform: rotateX(-90deg) translateY(150px);
+  -webkit-transform-origin: bottom;
+      -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+/*# sourceMappingURL=./style1.css.map */

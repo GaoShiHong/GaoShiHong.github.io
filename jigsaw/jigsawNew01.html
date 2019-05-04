@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="choose">
+        <ul>
+            <li value="0"><img src="./img/1.png"></li>
+            <li value="1"><img src="./img/2.jpg"></li>
+            <li value="2"><img src="./img/3.jpg"></li>
+            <li value="3"><img src="./img/4.png"></li>
+        </ul>
+    </div>
+    <div class="way">
+        <button>模式一</button>
+        <button>模式二</button>
+    </div>
+    <div class="stage">
+        <ul class="part1">
+            <li class="part11" value="0" title="0"></li>
+            <li class="part12" value="1" title="1"></li>
+            <li class="part13" value="2" title="2"></li>
+        </ul>
+        <ul class="part2">
+            <li class="part21" value="3" title="3"></li>
+            <li class="part22" value="4" title="4"></li>
+            <li class="part23" value="5" title="5"></li>
+        </ul>
+        <ul class="part3">
+            <li class="part31" value="6" title="6"></li>
+            <li class="part32" value="7" title="7"></li>
+            <li class="part33" value="8" title="8"></li>
+        </ul>
+    </div>
+    <div class="competition">
+        <h4>排行榜</h4>
+        <h5>第一名：<p></p>秒</h5>
+        <h5>第二名：<p></p>秒</h5>
+        <h5>第三名：<p></p>秒</h5>
+
+    </div>
+    <div class="wrap">
+        <div class="time">
+            <p></p>
+        </div>
+
+        <div class="buttons">
+            <button>重置</button>
+            <button>开始</button>
+            <button>暂停</button>
+        </div>
+    </div>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        width: 100%;
+        height: 100px;
+
+    }
+    .way{
+        float: right;   
+    }
+    .way button{
+        width: 50px;
+        height: 20px;
+    }
+    .time {
+        width: 20%;
+        height: 100%;
+        float: left;
+        text-align: center;
+        font-size: 48px;
+
+    }
+
+    /* .time p{
+        line-height: 30px;
+    } */
+    .choose {
+        width: 300px;
+        height: 80px;
+        margin: 0 auto;
+
+
+    }
+
+    .choose ul {
+        overflow: hidden;
+    }
+
+    .choose ul li {
+        margin: 15px 10px;
+        list-style: none;
+        float: left;
+        width: 50px;
+        height: 50px;
+    }
+
+    .choose ul li img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .buttons {
+        width: 20%;
+        height: 100%;
+        float: right;
+    }
+
+    .buttons button {
+        width: 100%;
+        margin: 10px 0;
+        line-height: 25px;
+    }
+
+    .competition {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150px;
+        height: 200px;
+        border: 2px solid yellowgreen;
+    }
+
+    .competition h4 {
+        text-align: center;
+        background: red;
+    }
+
+    .stage {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+
+
+    }
+
+    .stage ul {
+        list-style: none;
+        width: 100%;
+        height: 33.33%;
+        overflow: hidden;
+    }
+
+    .stage ul li {
+        width: 98px;
+        height: 100%;
+        float: left;
+        background-image: url("./img/1.png");
+        background-size: 300px 300px;
+        border: white solid 1px;
+    }
+
+    .part12 {
+        background-position-x: -100px;
+    }
+
+    .part13 {
+        background-position-x: -200px;
+    }
+
+    .part21 {
+        background-position-y: -100px;
+    }
+
+    .part22 {
+        background-position-y: -100px;
+        background-position-x: -100px;
+    }
+
+    .part23 {
+        background-position-y: -100px;
+        background-position-x: -200px;
+    }
+
+    .part31 {
+        background-position-y: -200px;
+    }
+
+    .part32 {
+        background-position-y: -200px;
+        background-position-x: -100px;
+    }
+
+    .part33 {
+        /* background-position-y: -200px;
+        background-position-x: -200px; */
+        /* background: blue; */
+        background-image: none !important;
+    }
+</style>
+<script>
+    var part1 = document.querySelector('.part1');
+    var part2 = document.querySelector('.part2');
+    var part3 = document.querySelector('.part3');
+    var stage = document.querySelector('.stage');
+    var pic = document.querySelectorAll('.choose ul li');
+    var list = document.querySelectorAll('.stage ul li');
+    var but = document.querySelectorAll('.buttons button');
+    var timep = document.querySelector('.time');
+    var competitionP = document.querySelectorAll('.competition h5 p');
+    var wayOne=document.querySelectorAll('.way button')[0];
+    var wayTwo=document.querySelectorAll('.way button')[1];
+    var time = 0;
+     var way1=false;
+    var num=0 ;//是否为两个高亮
+    var exch=[];
+    var pause = false;
+    var photo = ["./img/1.png", "./img/2.jpg", "./img/3.jpg", "./img/4.png"]
+    
+    //方式一方式二
+    wayOne.onclick=function(){
+        way1=false;
+    }
+     //方式二//去除模式切换时高亮没取消的问题
+    wayTwo.onclick=function(){
+        way1=true;
+        //去除模式切换时高亮没取消的问题
+        for(var i=0;i<list.length;i++){
+                removelinght(list[i]);
+            }
+    }
+    //设计排行榜
+    setCookie('socre1','10');
+    setCookie('socre2', '20');
+    setCookie('socre3', '30');
+    var socrenumber=[];
+    
+    socrenumber.push(parseInt(getCookie('socre1')));
+    socrenumber.push(parseInt(getCookie('socre2')));
+    socrenumber.push(parseInt(getCookie('socre3')));
+    competitionP[0].innerHTML=socrenumber[0];
+    competitionP[1].innerHTML=socrenumber[1];
+    competitionP[2].innerHTML=socrenumber[2];
+    // competition.innerHTML=getCookie('socre');
+    //添加点击事件
+    for (var i = 0; i < stage.children.length; i++) {
+        for (var j = 0; j < stage.children[0].children.length; j++) {
+            stage.children[i].children[j].onclick = function () {
+                // console.log("fasd");
+                Click(this);
+
+            }
+        }
+    }
+    //添加换图事件
+    for (var i = 0; i < pic.length; i++) {
+        pic[i].onclick = function () {
+            picture(photo[parseInt(this.value)]);
+        }
+    }
+    //添加按钮事件
+    but[0].onclick = function () {
+        ResertAll();
+        // time = 0;
+    }
+    but[1].onclick = function () {
+        chageAll();
+        time = 0;
+    }
+    but[2].onclick = function () {
+        if (pause) {
+            pause = false;
+            jishi = setInterval(function () {
+                time++;
+                if (time < 10) {
+                    timep.innerHTML = '0' + time;
+                } else {
+                    timep.innerHTML = time;
+                }
+            }, 1000);
+        }
+        else {
+            pause = true;
+            clearInterval(jishi);
+        }
+
+    }
+    //添加计时器并显示出来
+    var jishi = setInterval(function () {
+        time++;
+        if (time < 10) {
+            timep.innerHTML = '0' + time;
+        } else {
+            timep.innerHTML = time;
+        }
+    }, 1000);
+
+
+    //换图函数
+    function picture(str) {
+        for (var i = 0; i < list.length; i++) {
+            list[i].style.backgroundImage = "url(" + str + ")";
+
+        }
+    }
+    //查找功能
+    function findvalue(value) {
+        if (value < 0 || value > 8) {
+            return false;
+        }
+        for (var i = 0; i < stage.children.length; i++) {
+            for (var j = 0; j < stage.children[0].children.length; j++) {
+                var number = parseInt(stage.children[i].children[j].value);
+                if (value === number) {
+                    return stage.children[i].children[j];
+                }
+            }
+        }
+    }
+    function findtitle(title) {
+        if (title < 0 || title > 8) {
+            return false;
+        }
+        for (var i = 0; i < stage.children.length; i++) {
+            for (var j = 0; j < stage.children[0].children.length; j++) {
+                var number = parseInt(stage.children[i].children[j].title);
+                if (title === number) {
+                    return stage.children[i].children[j];
+                }
+            }
+        }
+    }
+    //重置功能
+    function ResertOne(parts, number) {
+        var classname2;
+        var valuenumber2;
+        var rando2;
+        for (var i = 0; i < parts.children.length; i++) {
+            rando2 = findvalue(i + number * 3);
+            classname2 = rando2.className;
+            valuenumber2 = rando2.value;
+            rando2.className = parts.children[i].className;
+            rando2.value = parts.children[i].value;
+            parts.children[i].className = classname2;
+            parts.children[i].value = valuenumber2;
+        }
+    }
+    function ResertAll() {
+        ResertOne(part1, 0);
+        ResertOne(part2, 1);
+        ResertOne(part3, 2);
+    }
+    //交换功能
+    function exchange(rando1, rando2) {
+        var classname1;
+        var valuenumber1;
+        classname1 = rando1.className;
+        valuenumber1 = rando1.value;
+        rando1.className = rando2.className;
+        rando1.value = rando2.value;
+        rando2.className = classname1;
+        rando2.value = valuenumber1;
+    }
+    //打乱图片功能
+    function changeOne(parts) {
+        var classname1;
+        var valuenumber1;
+        var rando1;
+        for (var i = 0; i < parts.children.length; i++) {
+            rando1 = getpic();
+            exchange(rando1, parts.children[i]);
+        }
+    }
+    function chageAll() {
+        changeOne(part1);
+        changeOne(part2);
+        changeOne(part3);
+    }
+    //获取随机图片模块
+    function getpic() {
+        var radom1 = Math.floor(Math.random() * 3);
+        var radom2 = Math.floor(Math.random() * 3);
+        return stage.children[radom1].children[radom2];
+    }
+    //判断是否可以移动
+    //判断四周是否有8 有问题
+    function ismoveAll(rando) {
+        var valuenumber3 = parseInt(rando.value);
+        var titlenumber = parseInt(rando.title);
+        var upnumber = titlenumber - 3;
+        var downnumber = titlenumber + 3;
+        var leftnumber = titlenumber - 1;
+        var rightnumber = titlenumber + 1;
+        //解决侧面bug
+        if(titlenumber%3==0){
+            leftnumber=-1;
+           
+        }else if(titlenumber%3==2){
+            rightnumber=-1;
+           
+        }
+        if (valuenumber3 == 8) {
+            return false;
+        }
+        var upradon = findtitle(upnumber);
+        var downradon = findtitle(downnumber);
+        var leftradon = findtitle(leftnumber);
+        var rightradon = findtitle(rightnumber);
+
+        if (ismoveOne(upradon) || ismoveOne(downradon) || ismoveOne(leftradon) || ismoveOne(rightradon)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //判断自身是否为8
+    function ismoveOne(rando) {
+        var valuenumber3 = parseInt(rando.value);
+        if (valuenumber3 == 8) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    //点击移动功能
+    function Click(rando) {
+        var radom3 
+        if (way1&&ismoveAll(rando)) {
+           
+         radom3 = findvalue(8);
+         exchange(rando, radom3);
+        setTimeout(function () { iswin(); }, 10);
+        }
+       if(!way1){
+        Light(rando);
+        if(num==2){
+            num=0;
+            exchange(findvalue(exch[0]),findvalue(exch[1]));
+            removelinght(findvalue(exch[0]));
+            removelinght(findvalue(exch[1]));
+            exch=[];
+            setTimeout(function () { iswin(); }, 10);
+        }
+        
+       }
+        
+    }
+    //高亮
+    function Light(rando) {
+        rando.style.border = " red solid 1px";
+        num++;
+        exch[num-1]=rando.value;
+    }
+    //取消高亮
+    function removelinght(rando) {
+        rando.style.border = " white solid 1px";
+    }
+    //判断成功功能
+    function iswin() {
+        var win = 0;
+        for (var i = 0; i < stage.children.length; i++) {
+            for (var j = 0; j < stage.children[0].children.length; j++) {
+                var valuenumber = parseInt(stage.children[i].children[j].value);
+                var titlenumber = parseInt(stage.children[i].children[j].title);
+                if (valuenumber === titlenumber) {
+                    win++;
+                }
+            }
+        }
+//成功后
+        if (win === 9) {
+            clearInterval(jishi);
+            alert('恭喜完成拼图');
+            setCookie('socre', time + '');
+            //成绩统计
+            for(var i=0;i<socrenumber.length;i++){
+                if(time<socrenumber[i]){
+                     alert('恭喜打破纪录荣获第'+(i+1)+"名");
+                    socrenumber[i]=time;
+                    setCookie(('socre'+(i+1)),time);
+                    competitionP[i].innerHTML=socrenumber[i];
+                    return;
+                }
+            }
+        }
+    }
+
+    //积分设置排行榜功能（显示时间积分器）
+    //换图功能
+    //暂停功能
+    //封面设计功能
+
+    //Cookie函数
+
+    function checkCookie(key) {
+        if (getCookie(key).length > 0) {
+            return true;
+        } else return false;
+    }
+    function setCookie(key, name, day) {
+        var d = new Date();
+        if (day) {
+            d.setTime(d.getTime() + (day * 24 * 60 * 60 * 1000));
+            document.cookie = key + "=" + name + '; expires=' + d;
+
+        } else {
+            document.cookie = key + "=" + name;
+        }
+
+    }
+    function removeCookie(key) {
+        // var exp='Thu, 18 Dec 2000 12:00:00 GMT';
+        setCookie(key, "", -3);
+    }
+    function getCookie(key) {
+        var cook = document.cookie;
+        var strs = [];
+        var str = cook.split(';');
+        var re = [];
+        for (var index = 0; index < str.length; index++) {
+            str[index] = str[index].trim();
+            //    console.log(str);
+            strs[index] = str[index].split('=');
+        }
+        for (var i = 0; i < strs.length; i++) {
+
+            if (strs[i][0] === key) {
+                re.push(strs[i][1]);
+            }
+
+        }
+
+        return re[0];
+    }
+</script>
+
+
+
+
+</html>

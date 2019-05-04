@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name
+            this.age = age
+        }
+        eat() {
+            console.log(this.name + '吃饭');
+        }
+    }
+
+    class SuperHero extends Person {
+        constructor(name, age, allegiance) {
+            super(name, age)
+            this.allegiance = allegiance
+
+            this.xxx = super.eat
+        }
+        static saveTheDay() {
+            console.log(this.name + ' Saved The Day')
+            console.log(this)
+        }
+    }
+
+    var nick = new Person('nicholas', 17)
+    var mark = new SuperHero('Mark', 14, 'good')
+</script>
+</html>

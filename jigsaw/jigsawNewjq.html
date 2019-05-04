@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="stage">
+
+    </div>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .stage {
+        width: 300px;
+        height: 300px;
+        /* background: lightcoral; */
+        margin: 0 auto;
+    }
+
+    .stage ul {
+        list-style: none;
+    }
+
+    .stage li {
+        float: left;
+        list-style: none;
+        background-image: url("./img/4.png");
+        outline: white solid 1px;
+    }
+</style>
+<script>
+    var stage = document.querySelector('.stage');
+    var lis;
+    var n=3;
+    var exch=[];
+    var lightnum=0;
+    // var stageWidth = parseInt(window.getComputedStyle(stage).width);
+    var stageWidth =$('.stage').outerWidth();
+    var stageHeight=$('.stage').outerHeight();
+    // var stageHeight = parseInt(window.getComputedStyle(stage).height);
+ 
+    created(n);
+    initialize();
+    //添加事件
+    //添加拼图块的点击事件
+    //javascript方法
+    // for (var i = 0; i < lis.length; i++) {
+    //         lis[i].onclick = function () {
+    //             // console.log("fasd");
+    //             Click(this);
+    //         }      
+    // }
+    //jquery方法
+    $('.stage li').click(function () { 
+        Click(this);
+    });
+
+
+    
+    //创建n*n的拼图快
+    function created(n) {
+        //创建n行
+        for (var i = 0; i < n*n; i++) {
+            var part = document.createElement('li');
+            // part.style.width = (stageWidth / n) + 'px';
+            $(part).css('width',(stageWidth / n) + 'px');
+            part.style.height = (stageHeight / n) + 'px';  
+            part.value=i+'';   
+            part.title=i+'';
+            part.style.backgroundSize=stageWidth+'px'+" "+stageHeight+'px';          
+            stage.appendChild(part);
+        }
+        //每行创建n个拼图块
+        lis=document.querySelectorAll('.stage li');
+    }
+   
+    //设置初始化图片偏移量//并实现重置功能
+    function initialize(){
+        for (var i = 0; i < n*n; i++){
+           var col=i%n;
+           var row=Math.floor(i/n);
+        //    lis[i].style.backgroundPositionX=(stageWidth / n)*col*-1+'px';
+        //    lis[i].style.backgroundPositionY=(stageHeight / n)*row*-1+'px';
+            $(lis).eq(i).css({'backgroundPositionX':(stageWidth / n)*col*-1+'px',
+            'backgroundPositionY':(stageHeight / n)*row*-1+'px'});
+        }
+    }
+   
+   //换图函数
+    function picture(str) {
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].style.backgroundImage = "url(" + str + ")";
+        }
+    }
+    //获取行数
+    function getrow(rando){
+        return Math.floor(parseInt(rando.value)/n)+1;
+    }
+    //获取列数
+    function getcol(rando){
+        return parseInt(rando.value)%n+1;
+    }
+     //查找功能
+    function findvalue(value) {
+        if (value < 0 || value > n*n) {
+            return false;
+        }
+        for (var i = 0; i < stage.children.length; i++) {
+                var number = parseInt(stage.children[i].value);
+                if (value === number) {
+                    return stage.children[i];
+                }
+            
+        }
+    }
+    function findtitle(title) {
+        if (title < 0 || title > n*n) {
+            return false;
+        }
+        for (var i = 0; i < stage.children.length; i++) {
+            
+                var number = parseInt(stage.children[i].title);
+                if (title === number) {
+                    return stage.children[i];
+               
+            }
+        }
+    }
+    //交换功能
+    function exchange(rando1,rando2) {
+        var valuenumber1=rando1.value;
+        var OpositionX=rando1.style.backgroundPositionX;
+        var OpositionY=rando1.style.backgroundPositionY;
+       
+        rando1.style.backgroundPositionX = rando2.style.backgroundPositionX;
+        rando1.style.backgroundPositionY = rando2.style.backgroundPositionY;
+        rando1.value = rando2.value;
+        
+        rando2.value = valuenumber1;
+        rando2.style.backgroundPositionX=OpositionX;
+        rando2.style.backgroundPositionY=OpositionY;
+    }
+   //获取随机图片模块
+   function getpic() {
+        var index = Math.floor(Math.random() * n*n);
+        return lis[index];
+    }
+    //打乱图片功能
+    function changeALL() {      
+        var rando1;
+        for (var i = 0; i < lis.length; i++) {
+            rando1 = getpic();
+            exchange(rando1,lis[i]);
+        }
+    }
+    //高亮//用exch记录高亮的相应拼图块的value值
+    function Light(rando) {
+        rando.style.outline = " red solid 1px";
+        lightnum++;
+        exch[lightnum-1]=rando.value;
+    }
+    //取消高亮
+    function removelinght(rando) {
+        rando.style.outline = " white solid 1px";
+    }
+    //点击移动功能
+    function Click(rando) {  
+        Light(rando);
+        if(lightnum==2){
+            lightnum=0;
+            exchange(findvalue(exch[0]),findvalue(exch[1]));
+            removelinght(findvalue(exch[0]));
+            removelinght(findvalue(exch[1]));
+            exch=[];
+            setTimeout(function () { iswin(); }, 10);
+        }    
+    }
+     //判断成功功能
+    function iswin() {
+        var win = 0;
+        for (var i = 0; i < lis.length; i++) {
+                var valuenumber = parseInt(lis[i].value);
+                if (valuenumber === i) {
+                    win++;
+                }            
+        }
+    //成功后
+        if (win === n*n) {
+            // clearInterval(jishi);
+            alert('恭喜完成拼图');
+            // setCookie('socre', time + '');
+            //成绩统计
+            // for(var i=0;i<socrenumber.length;i++){
+            //     if(time<socrenumber[i]){
+            //          alert('恭喜打破纪录荣获第'+(i+1)+"名");
+            //         socrenumber[i]=time;
+            //         setCookie(('socre'+(i+1)),time);
+            //         competitionP[i].innerHTML=socrenumber[i];
+            //         return;
+            //     }
+            // }
+        }
+    }
+</script>
+
+
+
+</html>

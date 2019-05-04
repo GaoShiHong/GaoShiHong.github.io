@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="stage">
+
+    </div>
+    <p>count:0</p>
+    <div class="music">
+
+    </div>
+</body>
+<style>
+    .stage {
+        width: 500px;
+        height: 300px;
+        border: 2px solid black;
+        margin: 0 auto;
+        position: relative;
+        top: 0;
+        left: 0;
+
+    }
+
+    .stage i {
+        display: block;
+        /* width: 10px;
+        height: 10px; */
+        /* background-color: blueviolet; */
+        position: absolute;
+
+    }
+    .music{
+        display: none;
+    }
+</style>
+<script>
+    var stage = document.querySelector('.stage');
+    var rectSize = 10;
+
+    var stageWidth = parseInt(window.getComputedStyle(stage).width) / rectSize;
+    var stageHeight = parseInt(window.getComputedStyle(stage).height) / rectSize;
+    var head;
+    var zhuangqiang = false;
+    var zhuangziji=false;
+    var anjian=true;
+    var count=0;
+    var setTime=1000;
+    var setV=true;
+
+    var music=document.querySelector('.music');
+
+    function rect(col, row) {
+        this.col = col;
+        this.row = row;
+        this.direction = 'right';
+    }
+
+    rect.prototype.draw = function (color) {
+        if (this.rectangle) {
+            stage.removeChild(this.rectangle);
+        }
+        this.rectangle = document.createElement('i');
+        this.rectangle.style.width = rectSize + 'px';
+        this.rectangle.style.height = rectSize + 'px';
+        this.rectangle.style.top = (this.row - 1) * rectSize + 'px';
+        this.rectangle.style.left = (this.col - 1) * rectSize + 'px';
+        this.rectangle.style.backgroundColor = color;
+
+        stage.appendChild(this.rectangle);
+
+    }
+
+    function Snake() {
+        this.newrect = [
+        // new rect(12, 1),
+        // new rect(11, 1),
+        // new rect(10, 1),
+        // new rect(9, 1),
+        // new rect(8, 1),
+        // new rect(7, 1),
+        new rect(6, 1),
+        new rect(5, 1),
+        new rect(4, 1),
+        new rect(3, 1),
+        new rect(2, 1),
+        new rect(1, 1)];
+        this.live = true;
+    };
+    var directions = {
+        right: 39,
+        left: 37,
+        up: 38,
+        down: 40
+    }
+
+    Snake.prototype.setdirection = function (e) {
+        switch (e) {
+            case directions.right:
+                if (this.newrect[0].direction != 'left') {
+                    this.newrect[0].direction = 'right';
+                }
+
+                break;
+            case directions.left:
+                if (this.newrect[0].direction != 'right') {
+                    this.newrect[0].direction = 'left';
+                }
+                break;
+            case directions.up:
+                if (this.newrect[0].direction != 'down') {
+                    this.newrect[0].direction = 'up';
+                }
+                break;
+            case directions.down:
+                if (this.newrect[0].direction != 'up') {
+                    this.newrect[0].direction = 'down';
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+    Snake.prototype.move = function () {
+        if (this.newrect[0].direction == 'right') {
+            //判断蛇是否撞墙
+            if ((this.newrect[0].col + 1) > stageWidth) {
+                this.live = false;
+                zhuangqiang = true;
+                return;
+            } else {
+                head = new rect(this.newrect[0].col + 1, this.newrect[0].row);
+                head.direction = 'right'
+            }
+
+
+        }
+        else if (this.newrect[0].direction == 'left') {
+            
+            //判断蛇是否撞墙
+            if ((this.newrect[0].col - 1) < 1) {
+                this.live = false;
+                zhuangqiang = true;
+                return;
+            } else {
+                head = new rect(this.newrect[0].col - 1, this.newrect[0].row);
+                head.direction = 'left'
+            }
+
+        }
+        else if (this.newrect[0].direction == 'up') {
+           
+            //判断蛇是否撞墙
+            if ((this.newrect[0].row - 1) < 1) {
+                this.live = false;
+                zhuangqiang = true;
+                return;
+            } else {
+                head = new rect(this.newrect[0].col, this.newrect[0].row - 1);
+                head.direction = 'up'
+            }
+
+        }
+        else if (this.newrect[0].direction == 'down') {
+           
+            //判断蛇是否撞墙
+            if ((this.newrect[0].row + 1) > stageHeight) {
+                this.live = false;
+                zhuangqiang = true;
+                return;
+            }
+            else {
+                head = new rect(this.newrect[0].col, this.newrect[0].row + 1);
+                head.direction = 'down'
+            }
+
+        }
+
+        //判断蛇是否撞到自身
+     for(var i=1;i<Block.newrect.length;i++){
+        if( head.col==this.newrect[i].col&&head.row==this.newrect[i].row){
+            this.live = false;
+            zhuangziji = true;
+            return;
+
+        }
+     }
+
+        head.draw('blue');
+        this.newrect.unshift(head);
+        //判断蛇是否吃到食物//创建音效
+        if (head.col === apple.newrect.col && head.row === apple.newrect.row) {
+           
+            apple.move();
+            count++;
+            //创建音效
+            creadtAudio();
+            
+        }
+        else {
+            var newhead = this.newrect.pop();
+            stage.removeChild(newhead.rectangle);
+        }
+        anjian=true;
+    }
+    Snake.prototype.draw = function () {
+        for (var i = 0; i < this.newrect.length; i++) {
+            this.newrect[i].draw('yellow');
+        }
+        if (!this.live) {
+            for (var i = 0; i < this.newrect.length; i++) {
+                if (i === 0) {
+                    this.newrect[i].draw('blue');
+                } else {
+                    this.newrect[i].draw('yellow');
+                }
+
+            }
+        }
+
+    }
+
+
+    function radowNumber(wid) {
+        return Math.ceil(Math.random() * wid);
+    }
+    var Apple = function () {
+        this.newrect = new rect(10, 1);
+
+    }
+    Apple.prototype.draw = function () {
+
+        this.newrect.draw('red');
+
+
+    }
+    Apple.prototype.move = function () {
+
+        var xinde = true;
+        //当apple出现在蛇身上时会重新取值
+        while (xinde) {
+            xinde=false;
+            var randomWidth = radowNumber(stageWidth);
+            var randomHeight = radowNumber(stageHeight);
+            this.newrect.col = randomWidth;
+            this.newrect.row = randomHeight;
+            for (var i = 0; i < Block.newrect.length; i++) {
+                if (this.newrect.col == Block.newrect[i].col && this.newrect.row == Block.newrect[i].row) {
+                    xinde = true;
+                }
+
+            }
+           
+
+        }
+        apple.draw();
+    }
+
+
+//设置分数
+    var counts=document.querySelector('p');
+
+    var Block = new Snake();
+    var apple = new Apple();
+    apple.draw();
+            Block.draw();
+            Block.move();
+    // debugger;
+   
+        var time = setInterval(function () {
+        if (!Block.live) {           
+            Block.draw();
+            setTimeout(function () {
+                clearInterval(time);
+                if (zhuangqiang) {
+                    alert('撞墙死了');
+                }
+                if(zhuangziji){
+                    alert('撞自己死了');
+                }
+                
+            }, 10)
+
+        } else {
+            Block.draw();
+            Block.move();
+            counts.innerText='count:'+count;
+            
+        }
+    }, 100);
+    // setInterval(function () {
+    //         apple.draw();
+    //         apple.move();
+    // },100)
+    document.onkeydown = function (e) {  
+        if(anjian){
+            anjian=false;
+            Block.setdirection(e.keyCode);
+            console.log(e.key);
+        }    
+           
+        // console.log(e.key);
+
+    }
+    
+    function creadtAudio(){
+        var audio=document.createElement('audio');
+        var source1=document.createElement('source');
+        // var source2=document.createElement('source');
+        // var src1=document.createAttribute('src');
+        // var type1=document.createAttribute('type');
+        source1.setAttribute('src','11299.mp3');
+        source1.setAttribute('type','audio/mpeg');
+        audio.appendChild(source1);
+        // var attr=document.createAttribute('controls');
+        // attr.value='true';
+        audio.setAttribute('controls','true');
+        music.appendChild(audio);
+        audio.play();
+        audio.onended=function(){
+            music.removeChild(audio);
+        }
+    }
+//改蛇头颜色
+//设置撞墙死亡
+//设置apple不能随机出现在蛇身上
+//设置蛇不能撞到自己死亡
+//修改方向bug
+//修改按其他键出现的bug:wu gai bug
+
+//设置分数及随分数提高速度的提高
+</script>
+
+</html>
