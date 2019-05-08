@@ -1,0 +1,39 @@
+
+	/* active tra */
+	.tra {
+		transition: all 1s;
+	}
+
+	/* .active {
+		transform: translateY(100px);
+	} */
+
+	.section img.active {
+		transform: translateX(-600px);
+	}
+
+	.section div.active {
+		transform: translateX(600px);
+	}
+
+	.services h3.active {
+
+		transform: translateY(-100px);
+	}
+
+	.services div.active {
+
+		transform: translateY(100px);
+	}
+
+	.section5 .active:nth-child(1) {
+		transform: translateX(-600px);
+	}
+
+	.section5 .active:nth-child(2) {
+		transform: translateY(300px);
+	}
+
+	.section5 .active:nth-child(3) {
+		transform: translateX(600px);
+	}

@@ -4,6 +4,9 @@
 		<meta charset="utf-8">
 		<title>cultivation</title>
 		<link rel="stylesheet" type="text/css" href="cultivationStyle.css" />
+		<link rel="stylesheet" type="text/css" href="move.css" />
+		
+		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="header">
@@ -27,7 +30,7 @@
 				</div>
 
 			</div>
-			<h1 class="cu"><span>Environmental Protection</span></h1>
+			<h1 class="cu tra active"><span>Environmental Protection</span></h1>
 			<div class="tupian">
 
 				<ul>
@@ -84,8 +87,8 @@
 			<div class="content">
 					<h3>About us</h3>
 
-					<img src="img/section02.jpg" class="fl pic" />
-					<div class="fl tex">
+					<img src="./img/section02.jpg" class="fl pic active tra" />
+					<div class="fl tex active tra">
 						<p>Cras consequat iaculis lorem, id vehicula erat mattis quis. Vivamus laoreet velit justo, in ven e natis purus
 							pretium sit amet. Praesent lectus tortor, tincidu nt in consectetur vestibulum, ultrices nec neque. Praesent nec
 							sagittis mauris. Fusce convallis nunc neque. Integer egestas aliquam interdum. Nulla ante diam, interdum nec
@@ -104,11 +107,11 @@
 
 		<div class="services sethigh">
 			<div class="services_most sethigh">
-				<h3 class="title3">Our Services</h3>
+				<h3 class="title3 active tra ">Our Services</h3>
 				<ul>
 					<li>
 						
-						<div class="hover1">
+						<div class="hover1 active tra">
 							<div class="bor">
 							</div>
 							<div class="imgs">
@@ -123,7 +126,7 @@
 							purus.Praesent nec sagittis mauris. Fusce convallis nunc neque.Integer egestas.Vivamus laoreet velit justo</p>
 					</li>
 					<li>
-						<div class="hover1">
+						<div class="hover1 active tra">
 							<div class="bor">
 							</div>
 							<div class="imgs">
@@ -138,7 +141,7 @@
 							purus.Praesent nec sagittis mauris. Fusce convallis nunc neque.Integer egestas.Vivamus laoreet velit justo</p>
 					</li>
 					<li>
-						<div class="hover1">
+						<div class="hover1 active tra">
 							<div class="bor">
 							</div>
 							<div class="imgs">
@@ -404,3 +407,33 @@
 		
 	</body>
 </html>
+<script>
+	window.scrollTo(0, 1);
+	var act=[];
+	var pus;
+	$(document).scroll(function () {
+
+		if ($('.active').length != 0) {
+			if ($('.active').eq(0).offset().top < $(document).scrollTop() + window.innerHeight && $('.active').eq(0).offset().top > $(document).scrollTop() + window.innerHeight - 400 ) {
+				
+				act.push($('.active').eq(0));
+				// console.log(act);
+				
+				$('.active').eq(0).removeClass('active');
+				
+			}
+			
+		}
+		// if (act.length>0) {
+
+		// 	if (act[0].offset().top < $(document).scrollTop() + window.innerHeight - 300) {
+				
+				// act[0].addClass('active');
+				// act.shift();
+		// 		// console.log("fasdf");
+				
+				
+		// 	}
+		// }
+	});
+</script>
