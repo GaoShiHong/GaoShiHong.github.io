@@ -73,8 +73,8 @@
     box.onmousemove = function (event) {
         // console.log(event.pageX+" "+event.pageY);
         // console.log(event);
-        var maskwidth = parseInt(window.getComputedStyle(mask).width);
-        var maskheight = parseInt(window.getComputedStyle(mask).height);
+        var maskwidth = parseInt(window.getComputedStyle(mask).width)+6;
+        var maskheight = parseInt(window.getComputedStyle(mask).height)+6;
 
         var x = event.pageX - 8 - maskwidth / 2;//mask的margin-left
         var y = event.pageY - 8 - maskheight / 2;//mask的margin-top
