@@ -8,8 +8,8 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <!-- <script src="./socre.js"></script> -->
     <!-- <script src="./background.js"></script> -->
-    <!-- <link rel="stylesheet" href="./huacecss.css"> -->
-    <!-- <link rel="stylesheet" href="./background.css"> -->
+    <link rel="stylesheet" href="./huacecss.css">
+    <link rel="stylesheet" href="./background.css">
     <title>Document</title>
 </head>
 
@@ -18,14 +18,10 @@
         <div class="stage">
 
         </div>
-        <div class="contol">
-            <input type="text" placeholder="请输入难度" min="2" max="9" value="3"></input>
-            <button>确定</button>
-        </div>
         <div class="g-time"></div>
     </div>
 
-    <!-- <div class="huace">
+    <div class="huace">
 
 
         <div class="my-container">
@@ -56,11 +52,11 @@
             </div>
 
         </div>
-    </div> -->
-    <!-- <div class="background">
+    </div>
+    <div class="background">
         <canvas id="myCanvas" width="800" height="240">
         </canvas>
-    </div> -->
+    </div>
     <div class="mask" style="display:none;">
         <div class="socre">
             <h3>排行耪</h3>
@@ -199,7 +195,7 @@
 </script>
 <script>
     var inputvalue;
-    var imgsrc='./img/10.jpg';
+    var imgsrc;
     var stage = document.querySelector('.stage');
     var lis;
     var exch = [];
@@ -213,9 +209,6 @@
     var stageHeight = $('.stage').outerHeight();
     // var stageHeight = parseInt(window.getComputedStyle(stage).height);
 
-
-
-
     //选图事件
     $('.imgs').click(function (e) {
         $(this).appendTo($('.container')).parent().toggleClass('conpause').children().toggleClass('img00');
@@ -227,17 +220,10 @@
         e.preventDefault();
         $(this).parents('.huace').hide();
         inputvalue = $('.contol input').val();
-        // initialize(inputvalue);
-        $('.stage').empty();
         created(inputvalue);
         picture(imgsrc);
         dropShijian();
         initialize(inputvalue);
-        changeALL()
-        if (jishi) {
-            clearInterval(jishi);
-            time=0;
-        }
         //添加计时器并显示出来
         jishi = setInterval(function () {
 

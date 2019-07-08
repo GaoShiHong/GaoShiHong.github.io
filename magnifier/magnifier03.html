@@ -10,8 +10,12 @@
 
 <body>
     <div class="box">
-        <img src="timg.jpg" />
-        <div class="mask big"> <img src="timg.jpg" /></div>
+        <img src="10.jpg" class="image" />
+        <div class="mask big"> <img src="10.jpg" /></div>
+    </div>
+    <div class="contol">
+        <input type="text" placeholder="请输入倍数" min="1" max="9" value="1"></input>
+        <button>确定</button>
     </div>
     <!-- <div class="big">
         <img src="timg.jpg" />
@@ -19,68 +23,101 @@
 </body>
 <style>
     .box {
-        width: 200px;
-        height: 140px;
+        width: 400px;
+        height: 300px;
         float: left;
         position: relative;
     }
 
-   
+    .box .image {
+        width: 100%;
+        height: 100%;
+    }
+
 
     .big img {
         width: 400px;
-        height: auto;
+        height: 300px;
+
         position: absolute;
         top: 0;
         left: 0;
     }
-    img{
+
+    img {
         display: block;
     }
+
     .mask {
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
         background: rgba(255, 255, 255, 0.8);
         position: absolute;
         top: 0;
         left: 0;
         border-radius: 50%;
         overflow: hidden;
+        border: lightcoral solid 3px;
     }
 </style>
 <script>
     var box = document.querySelector('.box');
+    var boximg = document.querySelector('.box img');
     var big = document.querySelector('.big');
     var mask = document.querySelector('.mask');
-    var bigimg= document.querySelector('.big img');
+    var bigimg = document.querySelector('.big img');
+    var boximgWidth = parseInt(window.getComputedStyle(boximg).width);
+    var boximgHeight = parseInt(window.getComputedStyle(boximg).height);
+    var bigimgWidth = parseInt(window.getComputedStyle(bigimg).width);
+    var bigimgHeight = parseInt(window.getComputedStyle(bigimg).height);
     box.onmousemove = function (event) {
         // console.log(event.pageX+" "+event.pageY);
         // console.log(event);
-        var maskwidth =50;
-        var maskheight=50;
-        
-        var x = event.pageX - 8-maskwidth/2;//mask的margin-left
-        var y = event.pageY - 8-maskheight/2;//mask的margin-top
-        var xd=350/(200-50);//(bigimg.width-mask.width)[即图片移动到底的总偏移量]/(smallimg.width-mask.width)----[margin-left图片移动到底的总偏移量]-----可求出大图片相对与小图片的倍数
-        var yd=230/(140-50);
+        var maskwidth = parseInt(window.getComputedStyle(mask).width);
+        var maskheight = parseInt(window.getComputedStyle(mask).height);
+
+        var x = event.pageX - 8 - maskwidth / 2;//mask的margin-left
+        var y = event.pageY - 8 - maskheight / 2;//mask的margin-top
+        //(bigimg.width-mask.width)[即图片移动到底的总偏移量]/(smallimg.width-mask.width)----[margin-left图片移动到底的总偏移量]-----可求出大图片相对与小图片的倍数
+        // var xd=350/(200-50);
+        // var yd=230/(140-50);
+        var xd = (bigimgWidth - maskwidth) / (boximgWidth - maskwidth);
+        var yd = (bigimgHeight - maskwidth) / (boximgHeight - maskwidth);
         // console.log(x+" "+y);
-        if(x>150){
-            x=150;
+        if (x > boximgWidth - maskwidth) {
+            x = boximgWidth - maskwidth;
         }
-        if(x<0){
-            x=0;
+        if (x < 0) {
+            x = 0;
         }
-        if(y>90){
-            y=90;
+        if (y > boximgHeight - maskheight) {
+            y = boximgHeight - maskheight;
         }
-        if(y<0){
-            y=0;
+        if (y < 0) {
+            y = 0;
         }
         mask.style.top = y + 'px';
         mask.style.left = x + 'px';
-        bigimg.style.top = -y*yd + 'px';
-        bigimg.style.left = -x*xd + 'px';
+        bigimg.style.top = -y * yd + 'px';
+        bigimg.style.left = -x * xd + 'px';
         //x * zoom.value - maskSizeX / 2
+    }
+    but=document.querySelector('.contol button');
+    var input=document.querySelector('.contol input');
+    var valuenumber;
+    but.onclick=function(){
+        valuenumber=input.value;
+        if (valuenumber>0&&valuenumber<6) {
+            bigimg.style.width=bigimgWidth*valuenumber+'px';
+            bigimgWidth = parseInt(window.getComputedStyle(bigimg).width);
+            bigimg.style.height=bigimgHeight*valuenumber+'px';
+            bigimgHeight = parseInt(window.getComputedStyle(bigimg).height);
+
+        }else{
+            alert('倍数过大或过小');
+        }
+       
+        
     }
 </script>
 
