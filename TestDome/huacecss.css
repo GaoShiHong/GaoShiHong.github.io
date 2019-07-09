@@ -21,8 +21,8 @@ body {
 .my-container {
     width: 500px;
     height: 500px;
-    margin: 0 auto;
-    background: #eaf048;
+    margin: 150px auto;
+    /* background: #eaf048; */
     
 }
 
@@ -30,7 +30,7 @@ body {
     perspective: 800px;
     width: 100%;
     height: 80%;
-    background: #9ff048;
+    /* background: #9ff048; */
 }
 
 .container {
@@ -66,47 +66,47 @@ body {
 }
 
 .img01 {
-    transform: rotateY(0deg) translateZ(200px);
+    transform: rotateY(0deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img02 {
-    transform: rotateY(40deg) translateZ(200px);
+    transform: rotateY(40deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img03 {
-    transform: rotateY(80deg) translateZ(200px);
+    transform: rotateY(80deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img04 {
-    transform: rotateY(120deg) translateZ(200px);
+    transform: rotateY(120deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img05 {
-    transform: rotateY(160deg) translateZ(200px);
+    transform: rotateY(160deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img06 {
-    transform: rotateY(200deg) translateZ(200px);
+    transform: rotateY(200deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img07 {
-    transform: rotateY(240deg) translateZ(200px);
+    transform: rotateY(240deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img08 {
-    transform: rotateY(280deg) translateZ(200px);
+    transform: rotateY(280deg) translateZ(400px);
     transition: all 1s;
 }
 
 .img09 {
-    transform: rotateY(320deg) translateZ(200px);
+    transform: rotateY(320deg) translateZ(400px);
     transition: all 1s;
 }
 .img00{
