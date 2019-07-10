@@ -38,3 +38,4 @@
         </ul>
     </li>
 </ul>
+<span>由于音乐app采用的时网易云的api在运行时需下载NeteaseCloud文件夹中的NeteaseCloudMusicApi文件夹并运行node app.js,才能正常使用axios获取相应数据，详细操作可参考该文件夹下的README.MD</span>
