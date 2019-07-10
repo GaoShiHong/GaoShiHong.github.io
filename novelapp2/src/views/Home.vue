@@ -17,7 +17,7 @@ export default {
   },
   created() {
     axios
-      .get('http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/fuzzy-search?query=斗罗', {
+      .get('//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/fuzzy-search?query=斗罗', {
     query: {
       recommends: '斗罗'
     }

@@ -74,7 +74,7 @@ export default {
     sourceid: function() {
       // console.log("改变id");
       this.gethttp2 =
-        "http://api.kele8.cn/agent/http://api.zhuishushenqi.com/atoc/" +
+        "//api.kele8.cn/agent/http://api.zhuishushenqi.com/atoc/" +
         this.sourceid +
         "?view=chapters";
       axios
@@ -113,7 +113,7 @@ export default {
     this.xiaoshouId = this.$route.params.cont["_id"];
     // console.log(this.xiaoshouId);
     this.gethttp =
-      "http://api.kele8.cn/agent/https://api.zhuishushenqi.com/atoc?view=summary&book=" +
+      "//api.kele8.cn/agent/https://api.zhuishushenqi.com/atoc?view=summary&book=" +
       this.xiaoshouId;
     axios
       .get(this.gethttp)

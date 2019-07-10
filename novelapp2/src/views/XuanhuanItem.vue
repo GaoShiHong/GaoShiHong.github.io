@@ -20,7 +20,7 @@ export default {
             major:this.$route.query.major,
             start:0,
             limit:20,
-            gethttp:'http://api.kele8.cn/agent/https://api.zhuishushenqi.com/book/by-categories',
+            gethttp:'//api.kele8.cn/agent/https://api.zhuishushenqi.com/book/by-categories',
             contents:null,
             dataContent:null
       }

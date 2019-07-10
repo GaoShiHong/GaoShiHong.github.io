@@ -100,7 +100,7 @@ export default {
     keyword:function(){
       
         this.show=true;
-      this.gethttp='http://api.kele8.cn/agent/http://api.zhuishushenqi.com/book/auto-complete?query='
+      this.gethttp='//api.kele8.cn/agent/http://api.zhuishushenqi.com/book/auto-complete?query='
        +this.keyword;
        axios
        
@@ -121,7 +121,7 @@ export default {
     },
     getsearch(){
       this.show=false;
-      this.gethttp="http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/fuzzy-search?query="
+      this.gethttp="//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/fuzzy-search?query="
       +this.keyword
        axios
       .get(

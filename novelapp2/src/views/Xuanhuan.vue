@@ -126,7 +126,7 @@ export default {
     
     axios
       .get(
-        "http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/cats/lv2"
+        "//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/cats/lv2"
       )
       .then(res => {
         this.content = res.data;

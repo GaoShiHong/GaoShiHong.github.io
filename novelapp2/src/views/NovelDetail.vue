@@ -156,7 +156,7 @@ export default {
     
     // console.log(this.cont);
     // this.substance=this.getAxios(this.cont['_id']);
-    this.gethttp='http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/'
+    this.gethttp='//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/'
     +this.cont['_id'];
           axios
       .get(this.gethttp,)

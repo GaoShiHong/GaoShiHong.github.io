@@ -93,7 +93,7 @@ export default {
   },
   created() {
      axios
-      .get('http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/ranking/gender')
+      .get('//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/ranking/gender')
       .then(res => {
         this.boy=res.data.male;
         //  console.log(this.boy);

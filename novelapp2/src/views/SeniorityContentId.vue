@@ -57,7 +57,7 @@ export default {
     methods: {
         getContentid(shuju){
             //  console.log(this);
-         this.gethttp="http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/ranking/"
+         this.gethttp="//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/ranking/"
         +shuju;
             axios
       .get(
@@ -81,7 +81,7 @@ export default {
         // console.log(this);
         this.gaoshi =this.$route.params.gaoshi
         // this.userid=this.$route.query.userid;
-        this.gethttp="http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/ranking/"
+        this.gethttp="//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/ranking/"
         +this.gaoshi[this.$route.query.userid];
         // console.log(this.$route.params);
         // console.log(this.$route.params.gaoshi[this.userid]);

@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getaxios(id){
-      let gethttp="http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/"+id
+      let gethttp="//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/book/"+id
       axios
       .get(gethttp)
       .then(res => {

@@ -46,7 +46,7 @@ export default {
   },
   created() {
      axios
-      .get('http://api.kele8.cn/agent?url=http://api.zhuishushenqi.com/cats/lv2/statistics')
+      .get('//api.kele8.cn/agent?url=http://api.zhuishushenqi.com/cats/lv2/statistics')
       .then(res => {
         this.boy=res.data.male;
         for(let i=0;i<this.boy.length;i++){

@@ -265,7 +265,7 @@ export default {
       // console.log(this.$route.query.sourceid);
       
        this.gethttp2 =
-        "http://api.kele8.cn/agent/http://api.zhuishushenqi.com/atoc/" +
+        "//api.kele8.cn/agent/http://api.zhuishushenqi.com/atoc/" +
         this.$route.query.sourceid +
         "?view=chapters";
       axios
@@ -287,7 +287,7 @@ export default {
       // console.log(item);
       this.title=item.title;
       this.gethttp =
-      "http://api.kele8.cn/agent?url=http://chapterup.zhuishushenqi.com/chapter/" +
+      "//api.kele8.cn/agent?url=http://chapterup.zhuishushenqi.com/chapter/" +
       item.link;
     axios
       .get(this.gethttp)
@@ -340,7 +340,7 @@ export default {
   created() {
    
     this.gethttp =
-      "http://api.kele8.cn/agent?url=http://chapterup.zhuishushenqi.com/chapter/" +
+      "//api.kele8.cn/agent?url=http://chapterup.zhuishushenqi.com/chapter/" +
       this.$route.query.link;
     axios
       .get(this.gethttp)
