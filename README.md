@@ -3,7 +3,7 @@
     <li><span>小说app</span><a href="https://gaoshihong.github.io/novelapp/dist/index.html">
     https://gaoshihong.github.io/novelapp/dist/index.html</a></li>
     <li><span>音乐app</span>
-    <a href="https://gaoshihong.github.io/NeteaseCloud/musicapp/dist/index.html">
+    <a href="https://gaoshihong.github.io/musicapp/dist/index.html">
     https://gaoshihong.github.io/NeteaseCloud/musicapp/dist/index.html</a></li>
     <li><span>环保网页</span><a href="https://gaoshihong.github.io/cultivationTestDome/index.html">
     https://gaoshihong.github.io/cultivationTestDome/index.html</a></li>
