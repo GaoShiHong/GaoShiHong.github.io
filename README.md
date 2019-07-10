@@ -4,7 +4,7 @@
     https://gaoshihong.github.io/novelapp/dist/index.html</a></li>
     <li><span>音乐app</span>
     <a href="https://gaoshihong.github.io/musicapp/dist/index.html">
-    https://gaoshihong.github.io/NeteaseCloud/musicapp/dist/index.html</a></li>
+    https://gaoshihong.github.io/musicapp/dist/index.html</a></li>
     <li><span>环保网页</span><a href="https://gaoshihong.github.io/cultivationTestDome/index.html">
     https://gaoshihong.github.io/cultivationTestDome/index.html</a></li>
     <li><span>潮汕文化网页</span><a href="https://gaoshihong.github.io/travel/index.html">
@@ -38,4 +38,3 @@
         </ul>
     </li>
 </ul>
-<span>由于音乐app采用的时网易云的api在运行时需下载NeteaseCloud文件夹中的NeteaseCloudMusicApi文件夹并运行node app.js,才能正常使用axios获取相应数据，详细操作可参考该文件夹下的README.MD</span>
