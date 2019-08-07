@@ -48,11 +48,12 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 </style>
 
 <style lang='less' scoped >
 #app {
- max-width: 460px;
+//  max-width: 460px;
   #nav {
     overflow: scroll;
     ul {
