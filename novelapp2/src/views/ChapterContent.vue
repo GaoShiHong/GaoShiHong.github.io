@@ -177,7 +177,7 @@
      background: rgba(0, 0, 0, 0.5);
      border-radius: 50%;
      position: fixed;
-     right: 0;
+     left: 0;
      bottom: 50px;
      font-size: 10px;
      color: white;
