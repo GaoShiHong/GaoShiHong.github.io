@@ -52,7 +52,7 @@ export default {
 
 <style lang='less' scoped >
 #app {
-//  max-width: 360px;
+ max-width: 460px;
   #nav {
     overflow: scroll;
     ul {
